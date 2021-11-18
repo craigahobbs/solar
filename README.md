@@ -1,3 +1,3 @@
 # Solar Dashboard
 
-[Open the Dashboard](#url=offset-monthly.md)
+[Open the Dashboard](https://craigahobbs.github.io/solar/#url=offset-monthly.md)
