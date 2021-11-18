@@ -21,17 +21,17 @@ xField: MONTH(Date time)
 yFields.0: SUM(Solar Offset (kWh))
 
 precision: 1
-datetime: Month
+datetime: Day
 
 yTicks.start.number: -2000
 yTicks.end.number: 2000
 yTicks.count: 9
 yTicks.skip: 1
 
-xTicks.start.datetime: 2020-01-01
-xTicks.end.datetime: 2022-01-01
-xTicks.count: 25
-xTicks.skip: 2
+xTicks.start.datetime: 2020-04-01
+xTicks.end.datetime: 2021-12-01
+xTicks.count: 21
+xTicks.skip: 3
 ~~~
 
 ~~~ line-chart
@@ -53,17 +53,17 @@ yFields.0: SUM(Home (kWh))
 yFields.1: SUM(Solar Energy (kWh))
 
 precision: 1
-datetime: Month
+datetime: Day
 
 yTicks.start.number: 0
 yTicks.end.number: 2500
 yTicks.count: 11
 yTicks.skip: 1
 
-xTicks.start.datetime: 2020-01-01
-xTicks.end.datetime: 2022-01-01
-xTicks.count: 25
-xTicks.skip: 2
+xTicks.start.datetime: 2020-04-01
+xTicks.end.datetime: 2021-12-01
+xTicks.count: 21
+xTicks.skip: 3
 ~~~
 
 ~~~ data-table
