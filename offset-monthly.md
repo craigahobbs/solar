@@ -71,10 +71,13 @@ aggregation.measures.0.field: Home (kWh)
 aggregation.measures.0.function: Sum
 aggregation.measures.1.field: Solar Energy (kWh)
 aggregation.measures.1.function: Sum
+aggregation.measures.2.field: Solar Offset (kWh)
+aggregation.measures.2.function: Sum
 
 categoryFields.0: MONTH(Date time)
-fields.0: SUM(Solar Energy (kWh))
-fields.1: SUM(Home (kWh))
+fields.0: SUM(Solar Offset (kWh))
+fields.1: SUM(Solar Energy (kWh))
+fields.2: SUM(Home (kWh))
 
 sort.0.field: MONTH(Date time)
 sort.0.desc: true
