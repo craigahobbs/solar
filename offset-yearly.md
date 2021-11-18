@@ -32,7 +32,7 @@ datetime: Year
 ~~~ line-chart
 title: Solar Offset (Yearly)
 width: 1024
-height: 320
+height: 480
 
 dataURL: solar.csv
 
@@ -53,7 +53,7 @@ datetime: Day
 yTicks.start.number: 0
 yTicks.end.number: 14000
 yTicks.count: 15
-yTicks.skip: 2
+yTicks.skip: 1
 
 xTicks.count: 9
 xTicks.skip: 1

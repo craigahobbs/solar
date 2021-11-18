@@ -23,13 +23,13 @@ yFields.0: SUM(Solar Offset (kWh))
 precision: 1
 datetime: Day
 
-yTicks.start.number: -1000
-yTicks.end.number: 3000
+yTicks.start.number: -2000
+yTicks.end.number: 2000
 yTicks.count: 9
 yTicks.skip: 1
 
-xTicks.count: 9
-xTicks.skip: 1
+xTicks.count: 21
+xTicks.skip: 3
 ~~~
 
 ~~~ line-chart
@@ -54,12 +54,12 @@ precision: 1
 datetime: Day
 
 yTicks.start.number: 0
-yTicks.end.number: 3000
-yTicks.count: 7
+yTicks.end.number: 2500
+yTicks.count: 11
 yTicks.skip: 1
 
-xTicks.count: 9
-xTicks.skip: 1
+xTicks.count: 21
+xTicks.skip: 3
 ~~~
 
 ~~~ data-table
