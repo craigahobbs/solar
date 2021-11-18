@@ -1,9 +1,34 @@
 [Home](#url=README.md) |
-[Monthly](#url=offset-monthly.md) |
-[Yearly](#url=offset-yearly.md)
+[Solar](#url=solar.md) |
+[Grid](#url=grid.md) |
+[Powerwall](#url=powerwall.md)
 
 
-# Solar Offset (Monthly)
+# Solar
+
+~~~ data-table
+dataURL: solar.csv
+
+aggregation.categories.0.field: Date time
+aggregation.categories.0.by: Year
+aggregation.measures.0.field: Home (kWh)
+aggregation.measures.0.function: Sum
+aggregation.measures.1.field: Solar Energy (kWh)
+aggregation.measures.1.function: Sum
+aggregation.measures.2.field: Solar Offset (kWh)
+aggregation.measures.2.function: Sum
+
+categoryFields.0: YEAR(Date time)
+fields.0: SUM(Solar Offset (kWh))
+fields.1: SUM(Solar Energy (kWh))
+fields.2: SUM(Home (kWh))
+
+sort.0.field: YEAR(Date time)
+sort.0.desc: true
+
+precision: 1
+datetime: Year
+~~~
 
 ~~~ line-chart
 title: Solar Offset (Monthly)

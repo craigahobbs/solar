@@ -19,9 +19,18 @@ def main():
             csv_reader = csv.DictReader(csv_file)
             data.extend(row for row in csv_reader)
 
+    # Sort the data
+    data = sorted(data, key=lambda row: row['Date time'])
+
     # Add solar offset field
     for row in data:
-        row['Solar Offset (kWh)'] = round(float(row['Solar Energy (kWh)']) - float(row['Home (kWh)']), 3)
+        home_kwh = float(row['Home (kWh)'])
+        solar_energy_kwh = float(row['Solar Energy (kWh)'])
+        from_grid_kwh = float(row['From Grid (kWh)'])
+        to_grid_kwh = float(row['To Grid (kWh)'])
+
+        row['Solar Offset (kWh)'] = solar_energy_kwh - home_kwh
+        row['Grid Surplus (kWh)'] = -to_grid_kwh - from_grid_kwh
 
     # Write the CSV
     writer = csv.DictWriter(sys.stdout, [
@@ -31,7 +40,8 @@ def main():
         'From Powerwall (kWh)',
         'From Grid (kWh)',
         'To Grid (kWh)',
-        'Solar Offset (kWh)'
+        'Solar Offset (kWh)',
+        'Grid Surplus (kWh)'
     ])
     writer.writeheader()
     for row in data:
