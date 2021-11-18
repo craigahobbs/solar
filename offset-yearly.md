@@ -48,13 +48,12 @@ yFields.0: SUM(Home (kWh))
 yFields.1: SUM(Solar Energy (kWh))
 
 precision: 1
-datetime: Day
+datetime: Year
 
 yTicks.start.number: 0
 yTicks.end.number: 14000
 yTicks.count: 15
 yTicks.skip: 1
 
-xTicks.count: 9
-xTicks.skip: 1
+xTicks.count: 2
 ~~~

@@ -7,8 +7,8 @@
 
 ~~~ line-chart
 title: Solar Offset (Monthly)
-width: 800
-height: 320
+width: 900
+height: 350
 
 dataURL: solar.csv
 
@@ -21,21 +21,23 @@ xField: MONTH(Date time)
 yFields.0: SUM(Solar Offset (kWh))
 
 precision: 1
-datetime: Day
+datetime: Month
 
 yTicks.start.number: -2000
 yTicks.end.number: 2000
 yTicks.count: 9
 yTicks.skip: 1
 
-xTicks.count: 21
-xTicks.skip: 3
+xTicks.start.datetime: 2020-01-01
+xTicks.end.datetime: 2022-01-01
+xTicks.count: 25
+xTicks.skip: 2
 ~~~
 
 ~~~ line-chart
 title: Solar and Home (Monthly)
-width: 1024
-height: 320
+width: 1100
+height: 350
 
 dataURL: solar.csv
 
@@ -51,15 +53,17 @@ yFields.0: SUM(Home (kWh))
 yFields.1: SUM(Solar Energy (kWh))
 
 precision: 1
-datetime: Day
+datetime: Month
 
 yTicks.start.number: 0
 yTicks.end.number: 2500
 yTicks.count: 11
 yTicks.skip: 1
 
-xTicks.count: 21
-xTicks.skip: 3
+xTicks.start.datetime: 2020-01-01
+xTicks.end.datetime: 2022-01-01
+xTicks.count: 25
+xTicks.skip: 2
 ~~~
 
 ~~~ data-table
