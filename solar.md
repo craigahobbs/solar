@@ -9,6 +9,15 @@
 ~~~ data-table
 dataURL: solar.csv
 
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
+
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Year
 aggregation.measures.0.field: Home (kWh)
@@ -37,6 +46,15 @@ height: 350
 
 dataURL: solar.csv
 
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
+
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month
 aggregation.measures.0.field: Solar Offset (kWh)
@@ -48,14 +66,14 @@ yFields.0: SUM(Solar Offset (kWh))
 precision: 1
 datetime: Day
 
-yTicks.start.number: -2000
-yTicks.end.number: 2000
+yTicks.start.number: -1200
+yTicks.end.number: 1200
 yTicks.count: 9
 yTicks.skip: 1
 
-xTicks.start.datetime: 2020-04-01
-xTicks.end.datetime: 2021-12-01
-xTicks.count: 21
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
 xTicks.skip: 3
 ~~~
 
@@ -65,6 +83,15 @@ width: 1100
 height: 350
 
 dataURL: solar.csv
+
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month
@@ -85,14 +112,23 @@ yTicks.end.number: 2500
 yTicks.count: 11
 yTicks.skip: 1
 
-xTicks.start.datetime: 2020-04-01
-xTicks.end.datetime: 2021-12-01
-xTicks.count: 21
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
 xTicks.skip: 3
 ~~~
 
 ~~~ data-table
 dataURL: solar.csv
+
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month

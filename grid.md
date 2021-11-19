@@ -9,6 +9,15 @@
 ~~~ data-table
 dataURL: solar.csv
 
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
+
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Year
 aggregation.measures.0.field: From Grid (kWh)
@@ -31,10 +40,19 @@ datetime: Year
 
 ~~~ line-chart
 title: Grid Surplus (Monthly)
-width: 850
+width: 900
 height: 350
 
 dataURL: solar.csv
+
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month
@@ -47,22 +65,32 @@ yFields.0: SUM(Grid Surplus (kWh))
 precision: 1
 datetime: Day
 
-xTicks.start.datetime: 2020-04-01
-xTicks.end.datetime: 2021-12-01
-xTicks.count: 21
-xTicks.skip: 3
-
 yTicks.start.number: -1200
 yTicks.end.number: 1200
 yTicks.count: 9
+yTicks.skip: 1
+
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
+xTicks.skip: 3
 ~~~
 
 ~~~ line-chart
 title: To/From Grid
-width: 1000
+width: 1050
 height: 350
 
 dataURL: solar.csv
+
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
 
 xField: Date time
 yFields.0: From Grid (kWh)
@@ -71,22 +99,31 @@ yFields.1: To Grid (kWh)
 precision: 1
 datetime: Day
 
-xTicks.start.datetime: 2020-04-01
-xTicks.end.datetime: 2021-12-01
-xTicks.count: 21
-xTicks.skip: 3
-
 yTicks.start.number: -80
 yTicks.end.number: 80
 yTicks.count: 9
+
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
+xTicks.skip: 3
 ~~~
 
 ~~~ line-chart
 title: To/From Grid (Monthly)
-width: 1000
+width: 1100
 height: 350
 
 dataURL: solar.csv
+
+variables.start.live.value: Year
+variables.start.live.index: -1
+variables.end.live.value: Year
+variables.end.live.index: 1
+
+filters.0.field: Date time
+filters.0.gte.variable: start
+filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month
@@ -102,12 +139,12 @@ yFields.1: SUM(To Grid (kWh))
 precision: 1
 datetime: Day
 
-xTicks.start.datetime: 2020-04-01
-xTicks.end.datetime: 2021-12-01
-xTicks.count: 21
-xTicks.skip: 3
-
 yTicks.start.number: -1200
 yTicks.end.number: 1200
 yTicks.count: 9
+
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
+xTicks.skip: 3
 ~~~
