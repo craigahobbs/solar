@@ -29,8 +29,8 @@ def main():
         from_grid_kwh = float(row['From Grid (kWh)'])
         to_grid_kwh = float(row['To Grid (kWh)'])
 
-        row['Solar Offset (kWh)'] = solar_energy_kwh - home_kwh
-        row['Grid Surplus (kWh)'] = -to_grid_kwh - from_grid_kwh
+        row['Solar Offset (kWh)'] = round(solar_energy_kwh - home_kwh, 3)
+        row['Grid Surplus (kWh)'] = round(-to_grid_kwh - from_grid_kwh, 3)
 
     # Write the CSV
     writer = csv.DictWriter(sys.stdout, [
