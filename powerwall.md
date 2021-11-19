@@ -41,6 +41,8 @@ xTicks.start.variable: start
 xTicks.end.variable: end
 xTicks.count: 25
 xTicks.skip: 3
+
+xAnnotations.0.value.live.value: Year
 ~~~
 
 ~~~ line-chart
@@ -73,4 +75,6 @@ xTicks.start.variable: start
 xTicks.end.variable: end
 xTicks.count: 25
 xTicks.skip: 3
+
+xAnnotations.0.value.live.value: Year
 ~~~
