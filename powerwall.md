@@ -27,11 +27,11 @@ aggregation.categories.0.by: Month
 aggregation.measures.0.field: From Powerwall (kWh)
 aggregation.measures.0.function: Average
 
-xField: MONTH(Date time)
-yFields.0: AVERAGE(From Powerwall (kWh))
-
 precision: 1
 datetime: Day
+
+xField: MONTH(Date time)
+yFields.0: AVERAGE(From Powerwall (kWh))
 
 yTicks.start.number: 0
 yTicks.end.number: 30
@@ -61,11 +61,11 @@ filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
-xField: Date time
-yFields.0: From Powerwall (kWh)
-
 precision: 1
 datetime: Day
+
+xField: Date time
+yFields.0: From Powerwall (kWh)
 
 yTicks.start.number: 0
 yTicks.end.number: 50

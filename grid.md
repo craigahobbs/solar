@@ -27,15 +27,16 @@ aggregation.measures.1.function: Sum
 aggregation.measures.2.field: Grid Surplus (kWh)
 aggregation.measures.2.function: Sum
 
-categoryFields.0: YEAR(Date time)
-fields.0: SUM(Grid Surplus (kWh))
-fields.1: SUM(To Grid (kWh))
-fields.2: SUM(From Grid (kWh))
 sort.0.field: YEAR(Date time)
 sort.0.desc: true
 
 precision: 1
 datetime: Year
+
+categoryFields.0: YEAR(Date time)
+fields.0: SUM(Grid Surplus (kWh))
+fields.1: SUM(To Grid (kWh))
+fields.2: SUM(From Grid (kWh))
 ~~~
 
 ~~~ line-chart
@@ -59,11 +60,11 @@ aggregation.categories.0.by: Month
 aggregation.measures.0.field: Grid Surplus (kWh)
 aggregation.measures.0.function: Sum
 
-xField: MONTH(Date time)
-yFields.0: SUM(Grid Surplus (kWh))
-
 precision: 1
 datetime: Day
+
+xField: MONTH(Date time)
+yFields.0: SUM(Grid Surplus (kWh))
 
 yTicks.start.number: -1200
 yTicks.end.number: 1200
@@ -97,12 +98,12 @@ filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
+precision: 1
+datetime: Day
+
 xField: Date time
 yFields.0: From Grid (kWh)
 yFields.1: To Grid (kWh)
-
-precision: 1
-datetime: Day
 
 yTicks.start.number: -80
 yTicks.end.number: 80
@@ -139,12 +140,12 @@ aggregation.measures.0.function: Sum
 aggregation.measures.1.field: To Grid (kWh)
 aggregation.measures.1.function: Sum
 
+precision: 1
+datetime: Day
+
 xField: MONTH(Date time)
 yFields.0: SUM(From Grid (kWh))
 yFields.1: SUM(To Grid (kWh))
-
-precision: 1
-datetime: Day
 
 yTicks.start.number: -1200
 yTicks.end.number: 1200
