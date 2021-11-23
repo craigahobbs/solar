@@ -7,7 +7,7 @@
 # Grid
 
 ~~~ data-table
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1
@@ -27,8 +27,8 @@ aggregation.measures.1.function: Sum
 aggregation.measures.2.field: Grid Surplus (kWh)
 aggregation.measures.2.function: Sum
 
-sort.0.field: YEAR(Date time)
-sort.0.desc: true
+sorts.0.field: YEAR(Date time)
+sorts.0.desc: true
 
 precision: 1
 datetime: Year
@@ -44,7 +44,7 @@ title: Grid Surplus (Monthly)
 width: 900
 height: 350
 
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1
@@ -87,7 +87,7 @@ title: To/From Grid
 width: 1050
 height: 350
 
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1
@@ -122,7 +122,7 @@ title: To/From Grid (Monthly)
 width: 1100
 height: 350
 
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1

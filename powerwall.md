@@ -11,7 +11,7 @@ title: From Powerwall (Monthly)
 width: 900
 height: 350
 
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1
@@ -50,7 +50,7 @@ title: From Powerwall
 width: 900
 height: 350
 
-dataURL: solar.csv
+data.url: solar.csv
 
 variables.start.live.value: Year
 variables.start.live.index: -1
