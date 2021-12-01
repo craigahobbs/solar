@@ -2,7 +2,8 @@
 Solar |
 [Grid](#url=grid.md) |
 [Powerwall](#url=powerwall.md) |
-[Annual](#url=annual.md)
+[Monthly](#url=monthly.md) |
+[Table](#url=table.md)
 
 
 # Solar
@@ -21,9 +22,9 @@ filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Year
-aggregation.measures.0.field: Home (kWh)
+aggregation.measures.0.field: Solar Energy (kWh)
 aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Solar Energy (kWh)
+aggregation.measures.1.field: Home (kWh)
 aggregation.measures.1.function: Sum
 aggregation.measures.2.field: Solar Offset (kWh)
 aggregation.measures.2.function: Sum
@@ -33,54 +34,6 @@ sorts.0.desc: true
 
 precision: 1
 datetime: Year
-
-categoryFields.0: YEAR(Date time)
-fields.0: SUM(Solar Offset (kWh))
-fields.1: SUM(Solar Energy (kWh))
-fields.2: SUM(Home (kWh))
-~~~
-
-~~~ line-chart
-title: Solar Offset (Monthly)
-width: 900
-height: 350
-
-data.url: solar.csv
-
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
-
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
-
-aggregation.categories.0.field: Date time
-aggregation.categories.0.by: Month
-aggregation.measures.0.field: Solar Offset (kWh)
-aggregation.measures.0.function: Sum
-
-precision: 1
-datetime: Day
-
-xField: MONTH(Date time)
-yFields.0: SUM(Solar Offset (kWh))
-
-yTicks.start.number: -1200
-yTicks.end.number: 1200
-yTicks.count: 9
-yTicks.skip: 1
-
-xTicks.start.variable: start
-xTicks.end.variable: end
-xTicks.count: 25
-xTicks.skip: 3
-
-yAnnotations.0.value.number: 0
-yAnnotations.0.label:
-
-xAnnotations.0.value.live.value: Year
 ~~~
 
 ~~~ line-chart
@@ -126,7 +79,11 @@ xTicks.skip: 3
 xAnnotations.0.value.live.value: Year
 ~~~
 
-~~~ data-table
+~~~ line-chart
+title: Solar Offset (Monthly)
+width: 900
+height: 350
+
 data.url: solar.csv
 
 variables.start.live.value: Year
@@ -140,21 +97,27 @@ filters.0.lt.variable: end
 
 aggregation.categories.0.field: Date time
 aggregation.categories.0.by: Month
-aggregation.measures.0.field: Home (kWh)
+aggregation.measures.0.field: Solar Offset (kWh)
 aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Solar Energy (kWh)
-aggregation.measures.1.function: Sum
-aggregation.measures.2.field: Solar Offset (kWh)
-aggregation.measures.2.function: Sum
-
-sorts.0.field: MONTH(Date time)
-sorts.0.desc: true
 
 precision: 1
-datetime: Month
+datetime: Day
 
-categoryFields.0: MONTH(Date time)
-fields.0: SUM(Solar Offset (kWh))
-fields.1: SUM(Solar Energy (kWh))
-fields.2: SUM(Home (kWh))
+xField: MONTH(Date time)
+yFields.0: SUM(Solar Offset (kWh))
+
+yTicks.start.number: -1200
+yTicks.end.number: 1200
+yTicks.count: 9
+yTicks.skip: 1
+
+xTicks.start.variable: start
+xTicks.end.variable: end
+xTicks.count: 25
+xTicks.skip: 3
+
+yAnnotations.0.value.number: 0
+yAnnotations.0.label:
+
+xAnnotations.0.value.live.value: Year
 ~~~

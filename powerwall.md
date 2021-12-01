@@ -2,7 +2,8 @@
 [Solar](#url=solar.md) |
 [Grid](#url=grid.md) |
 Powerwall |
-[Annual](#url=annual.md)
+[Monthly](#url=monthly.md) |
+[Table](#url=table.md)
 
 
 # Powerwall
