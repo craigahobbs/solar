@@ -1,7 +1,8 @@
 [Home](#url=README.md) |
 [Solar](#url=solar.md) |
 [Grid](#url=grid.md) |
-[Powerwall](#url=powerwall.md)
+Powerwall |
+[Annual](#url=annual.md)
 
 
 # Powerwall
