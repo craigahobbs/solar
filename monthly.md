@@ -95,4 +95,7 @@ yTicks.count: 11
 yTicks.skip: 1
 
 xTicks.count: 12
+
+yAnnotations.0.value.number: 0
+yAnnotations.0.label:
 ~~~
