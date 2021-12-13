@@ -15,11 +15,16 @@ height: 350
 
 data.url: solar.csv
 
+calculatedFields.0.name: Year
+calculatedFields.0.expression: year([Date time])
+calculatedFields.1.name: Month
+calculatedFields.1.expression: month([Date time])
+
 filters.0.field: Date time
 filters.0.gte.datetime: 2020-06-01
 
-aggregation.categories.0.field: Year
-aggregation.categories.1.field: Month
+aggregation.categoryFields.0: Year
+aggregation.categoryFields.1: Month
 aggregation.measures.0.field: Solar Energy (kWh)
 aggregation.measures.0.function: Sum
 
@@ -45,11 +50,16 @@ height: 350
 
 data.url: solar.csv
 
+calculatedFields.0.name: Year
+calculatedFields.0.expression: year([Date time])
+calculatedFields.1.name: Month
+calculatedFields.1.expression: month([Date time])
+
 filters.0.field: Date time
 filters.0.gte.datetime: 2020-06-01
 
-aggregation.categories.0.field: Year
-aggregation.categories.1.field: Month
+aggregation.categoryFields.0: Year
+aggregation.categoryFields.1: Month
 aggregation.measures.0.field: Home (kWh)
 aggregation.measures.0.function: Sum
 
@@ -74,11 +84,18 @@ height: 350
 
 data.url: solar.csv
 
+calculatedFields.0.name: Year
+calculatedFields.0.expression: year([Date time])
+calculatedFields.1.name: Month
+calculatedFields.1.expression: month([Date time])
+calculatedFields.2.name: Solar Offset (kWh)
+calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
+
 filters.0.field: Date time
 filters.0.gte.datetime: 2020-06-01
 
-aggregation.categories.0.field: Year
-aggregation.categories.1.field: Month
+aggregation.categoryFields.0: Year
+aggregation.categoryFields.1: Month
 aggregation.measures.0.field: Solar Offset (kWh)
 aggregation.measures.0.function: Sum
 

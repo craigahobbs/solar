@@ -16,12 +16,16 @@ variables.start.live.index: -1
 variables.end.live.value: Year
 variables.end.live.index: 1
 
+calculatedFields.0.name: Year
+calculatedFields.0.expression: date(year([Date time]), 1, 1)
+calculatedFields.1.name: Grid Surplus (kWh)
+calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
+
 filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
-aggregation.categories.0.field: Date time
-aggregation.categories.0.by: Year
+aggregation.categoryFields.0: Year
 aggregation.measures.0.field: From Grid (kWh)
 aggregation.measures.0.function: Sum
 aggregation.measures.1.field: To Grid (kWh)
@@ -29,13 +33,13 @@ aggregation.measures.1.function: Sum
 aggregation.measures.2.field: Grid Surplus (kWh)
 aggregation.measures.2.function: Sum
 
-sorts.0.field: YEAR(Date time)
+sorts.0.field: Year
 sorts.0.desc: true
 
 precision: 1
 datetime: Year
 
-categoryFields.0: YEAR(Date time)
+categoryFields.0: Year
 fields.0: SUM(Grid Surplus (kWh))
 fields.1: SUM(To Grid (kWh))
 fields.2: SUM(From Grid (kWh))
@@ -53,19 +57,23 @@ variables.start.live.index: -1
 variables.end.live.value: Year
 variables.end.live.index: 1
 
+calculatedFields.0.name: Month
+calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+calculatedFields.1.name: Grid Surplus (kWh)
+calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
+
 filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
-aggregation.categories.0.field: Date time
-aggregation.categories.0.by: Month
+aggregation.categoryFields.0: Month
 aggregation.measures.0.field: Grid Surplus (kWh)
 aggregation.measures.0.function: Sum
 
 precision: 1
 datetime: Day
 
-xField: MONTH(Date time)
+xField: Month
 yFields.0: SUM(Grid Surplus (kWh))
 
 yTicks.start.number: -1200
@@ -131,12 +139,14 @@ variables.start.live.index: -1
 variables.end.live.value: Year
 variables.end.live.index: 1
 
+calculatedFields.0.name: Month
+calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+
 filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
-aggregation.categories.0.field: Date time
-aggregation.categories.0.by: Month
+aggregation.categoryFields.0: Month
 aggregation.measures.0.field: From Grid (kWh)
 aggregation.measures.0.function: Sum
 aggregation.measures.1.field: To Grid (kWh)
@@ -145,7 +155,7 @@ aggregation.measures.1.function: Sum
 precision: 1
 datetime: Day
 
-xField: MONTH(Date time)
+xField: Month
 yFields.0: SUM(From Grid (kWh))
 yFields.1: SUM(To Grid (kWh))
 

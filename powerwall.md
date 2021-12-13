@@ -15,6 +15,9 @@ height: 350
 
 data.url: solar.csv
 
+calculatedFields.0.name: Month
+calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+
 variables.start.live.value: Year
 variables.start.live.index: -1
 variables.end.live.value: Year
@@ -24,15 +27,14 @@ filters.0.field: Date time
 filters.0.gte.variable: start
 filters.0.lt.variable: end
 
-aggregation.categories.0.field: Date time
-aggregation.categories.0.by: Month
+aggregation.categoryFields.0: Month
 aggregation.measures.0.field: From Powerwall (kWh)
 aggregation.measures.0.function: Average
 
 precision: 1
 datetime: Day
 
-xField: MONTH(Date time)
+xField: Month
 yFields.0: AVERAGE(From Powerwall (kWh))
 
 yTicks.start.number: 0
