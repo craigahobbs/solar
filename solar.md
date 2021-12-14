@@ -26,11 +26,11 @@ filters.0.gte.variable: start
 filters.0.lt.variable: end
 
 aggregation.categoryFields.0: Year
-aggregation.measures.0.field: Solar Energy (kWh)
+aggregation.measures.0.field: Solar Offset (kWh)
 aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Home (kWh)
+aggregation.measures.1.field: Solar Energy (kWh)
 aggregation.measures.1.function: Sum
-aggregation.measures.2.field: Solar Offset (kWh)
+aggregation.measures.2.field: Home (kWh)
 aggregation.measures.2.function: Sum
 
 sorts.0.field: Year
