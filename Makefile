@@ -1,8 +1,6 @@
 # Licensed under the MIT License
 # https://github.com/craigahobbs/solar/blob/main/LICENSE
 
-.DEFAULT_GOAL := help
-
 
 .PHONY: help
 help:
