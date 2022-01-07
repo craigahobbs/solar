@@ -11,19 +11,15 @@ Grid |
 ~~~ data-table
 data.url: solar.csv
 
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
+variables.start: date(year(now()) - 1, 1, 1)
+variables.end: date(year(now()) + 1, 1, 1)
 
 calculatedFields.0.name: Year
 calculatedFields.0.expression: date(year([Date time]), 1, 1)
 calculatedFields.1.name: Grid Surplus (kWh)
 calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
+filters.0: ([Date time] >= start) && ([Date time] < end)
 
 aggregation.categoryFields.0: Year
 aggregation.measures.0.field: From Grid (kWh)
@@ -52,19 +48,15 @@ height: 350
 
 data.url: solar.csv
 
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
+variables.start: date(year(now()) - 1, 1, 1)
+variables.end: date(year(now()) + 1, 1, 1)
 
 calculatedFields.0.name: Month
 calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
 calculatedFields.1.name: Grid Surplus (kWh)
 calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
+filters.0: ([Date time] >= start) && ([Date time] < end)
 
 aggregation.categoryFields.0: Month
 aggregation.measures.0.field: Grid Surplus (kWh)
@@ -76,20 +68,20 @@ datetime: Day
 xField: Month
 yFields.0: SUM(Grid Surplus (kWh))
 
-yTicks.start.number: -1200
-yTicks.end.number: 1200
+yTicks.start: -1200
+yTicks.end: 1200
 yTicks.count: 9
 yTicks.skip: 1
 
-xTicks.start.variable: start
-xTicks.end.variable: end
+xTicks.start: start
+xTicks.end: end
 xTicks.count: 25
 xTicks.skip: 3
 
-yAnnotations.0.value.number: 0
-yAnnotations.0.label:
+yAnnotations.0.value: 0
+yAnnotations.0.label: ''
 
-xAnnotations.0.value.live.value: Year
+xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -99,14 +91,10 @@ height: 350
 
 data.url: solar.csv
 
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
+variables.start: date(year(now()) - 1, 1, 1)
+variables.end: date(year(now()) + 1, 1, 1)
 
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
+filters.0: ([Date time] >= start) && ([Date time] < end)
 
 precision: 1
 datetime: Day
@@ -115,16 +103,16 @@ xField: Date time
 yFields.0: From Grid (kWh)
 yFields.1: To Grid (kWh)
 
-yTicks.start.number: -80
-yTicks.end.number: 80
+yTicks.start: -80
+yTicks.end: 80
 yTicks.count: 9
 
-xTicks.start.variable: start
-xTicks.end.variable: end
+xTicks.start: start
+xTicks.end: end
 xTicks.count: 25
 xTicks.skip: 3
 
-xAnnotations.0.value.live.value: Year
+xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -134,17 +122,13 @@ height: 350
 
 data.url: solar.csv
 
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
+variables.start: date(year(now()) - 1, 1, 1)
+variables.end: date(year(now()) + 1, 1, 1)
 
 calculatedFields.0.name: Month
 calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
 
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
+filters.0: ([Date time] >= start) && ([Date time] < end)
 
 aggregation.categoryFields.0: Month
 aggregation.measures.0.field: From Grid (kWh)
@@ -159,14 +143,14 @@ xField: Month
 yFields.0: SUM(From Grid (kWh))
 yFields.1: SUM(To Grid (kWh))
 
-yTicks.start.number: -1200
-yTicks.end.number: 1200
+yTicks.start: -1200
+yTicks.end: 1200
 yTicks.count: 9
 
-xTicks.start.variable: start
-xTicks.end.variable: end
+xTicks.start: start
+xTicks.end: end
 xTicks.count: 25
 xTicks.skip: 3
 
-xAnnotations.0.value.live.value: Year
+xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~

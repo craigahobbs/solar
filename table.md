@@ -18,14 +18,7 @@ calculatedFields.1.expression: month([Date time])
 calculatedFields.2.name: Solar Offset (kWh)
 calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
 
-variables.start.live.value: Year
-variables.start.live.index: -1
-variables.end.live.value: Year
-variables.end.live.index: 1
-
-filters.0.field: Date time
-filters.0.gte.variable: start
-filters.0.lt.variable: end
+filters.0: [Date time] >= date(2020, 6, 1)
 
 aggregation.categoryFields.0: Year
 aggregation.categoryFields.1: Month
