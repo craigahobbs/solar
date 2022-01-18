@@ -9,7 +9,7 @@ Powerwall |
 # Powerwall
 
 ~~~ line-chart
-title: From Powerwall (Monthly)
+title: 'From Powerwall (Monthly)'
 width: 900
 height: 350
 
@@ -46,7 +46,7 @@ xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
-title: From Powerwall
+title: 'From Powerwall'
 width: 900
 height: 350
 

@@ -9,7 +9,7 @@ Monthly |
 # Monthly
 
 ~~~ line-chart
-title: Monthly Solar Energy
+title: 'Monthly Solar Energy'
 width: 900
 height: 350
 
@@ -43,7 +43,7 @@ xTicks.count: 12
 ~~~
 
 ~~~ line-chart
-title: Monthly Power Usage
+title: 'Monthly Power Usage'
 width: 900
 height: 350
 
@@ -76,7 +76,7 @@ xTicks.count: 12
 ~~~
 
 ~~~ line-chart
-title: Monthly Solar Offset
+title: 'Monthly Solar Offset'
 width: 900
 height: 350
 

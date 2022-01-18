@@ -37,7 +37,7 @@ datetime: Year
 ~~~
 
 ~~~ line-chart
-title: Solar and Home (Monthly)
+title: 'Solar and Home (Monthly)'
 width: 1100
 height: 350
 
@@ -78,7 +78,7 @@ xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
-title: Solar Offset (Monthly)
+title: 'Solar Offset (Monthly)'
 width: 900
 height: 350
 

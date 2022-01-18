@@ -42,7 +42,7 @@ fields.2: SUM(From Grid (kWh))
 ~~~
 
 ~~~ line-chart
-title: Grid Surplus (Monthly)
+title: 'Grid Surplus (Monthly)'
 width: 900
 height: 350
 
@@ -85,7 +85,7 @@ xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
-title: To/From Grid
+title: 'To/From Grid'
 width: 1050
 height: 350
 
@@ -116,7 +116,7 @@ xAnnotations.0.value: date(year(now()), 1, 1)
 ~~~
 
 ~~~ line-chart
-title: To/From Grid (Monthly)
+title: 'To/From Grid (Monthly)'
 width: 1100
 height: 350
 
