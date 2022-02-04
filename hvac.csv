@@ -1,3 +1,3 @@
-Date time,HVAC Total (kWh),Cooling (kWh),Electric Heat (kWh),Continuous Fan (kWh),Heatpump Heating (kWh),Electric Re-Heat (kWh)
-2021-12-01T01:00:00-08:00,447,0,42,26,379,0
-2022-01-01T01:00:00-08:00,321,0,21,29,271,0
+Date,HVAC Total (kWh),Cooling (kWh),Electric Heat (kWh),Continuous Fan (kWh),Heatpump Heating (kWh),Electric Re-Heat (kWh)
+2021-12-01,447,0,42,26,379,0
+2022-01-01,321,0,21,29,271,0
