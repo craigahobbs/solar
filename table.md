@@ -10,23 +10,18 @@ Table
 
 ~~~ data-table
 data.url: solar.csv
-data.preCalculatedFields.0.name: Year
-data.preCalculatedFields.0.expression: year([Date time])
-data.preCalculatedFields.1.name: Month
-data.preCalculatedFields.1.expression: month([Date time])
-
 data.joins.0.url: hvac.csv
-data.joins.0.leftFields.0: Year
-data.joins.0.leftFields.1: Month
-data.joins.0.preCalculatedFields.0.name: Year
-data.joins.0.preCalculatedFields.0.expression: year([Date])
-data.joins.0.preCalculatedFields.1.name: Month
-data.joins.0.preCalculatedFields.1.expression: month([Date])
+data.joins.0.leftExpression: year([Date time]) + '-' + month([Date time])
+data.joins.0.rightExpression: year([Date]) + '-' + month([Date])
 
-calculatedFields.0.name: Solar Offset (kWh)
-calculatedFields.0.expression: [Solar Energy (kWh)] - [Home (kWh)]
-calculatedFields.1.name: HVAC (kWh)
-calculatedFields.1.expression: if([HVAC Total (kWh)] != null,[HVAC Total (kWh)],0)
+calculatedFields.0.name: Year
+calculatedFields.0.expression: year([Date time])
+calculatedFields.1.name: Month
+calculatedFields.1.expression: month([Date time])
+calculatedFields.2.name: Solar Offset (kWh)
+calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
+calculatedFields.3.name: HVAC (kWh)
+calculatedFields.3.expression: if([HVAC Total (kWh)] != null,[HVAC Total (kWh)],0)
 
 filters.0: [Date time] >= date(2020, 6, 1)
 
