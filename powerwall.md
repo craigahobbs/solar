@@ -21,9 +21,10 @@ calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
 variables.start: date(year(now()) - 1, 1, 1)
 variables.end: date(year(now()), month(now()) + 1, 1)
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 aggregation.categoryFields.0: Month
+aggregation.measures.0.name: Average From Powerwall (kWh)
 aggregation.measures.0.field: From Powerwall (kWh)
 aggregation.measures.0.function: Average
 
@@ -31,7 +32,7 @@ precision: 1
 datetime: Month
 
 xField: Month
-yFields.0: AVERAGE(From Powerwall (kWh))
+yFields.0: Average From Powerwall (kWh)
 
 yTicks.start: 0
 yTicks.end: 30
@@ -55,7 +56,7 @@ data.url: solar.csv
 variables.start: date(year(now()) - 1, 1, 1)
 variables.end: date(year(now()), month(now()) + 1, 1)
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 precision: 1
 datetime: Month

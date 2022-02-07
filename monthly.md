@@ -20,7 +20,7 @@ calculatedFields.0.expression: year([Date time])
 calculatedFields.1.name: Month
 calculatedFields.1.expression: month([Date time])
 
-filters.0: [Date time] >= date(2020, 6, 1)
+filter: [Date time] >= date(2020, 6, 1)
 
 aggregation.categoryFields.0: Year
 aggregation.categoryFields.1: Month
@@ -31,8 +31,8 @@ precision: 1
 datetime: Day
 
 xField: Month
-yFields.0: SUM(Solar Energy (kWh))
-colorFields.0: Year
+yFields.0: Solar Energy (kWh)
+colorField: Year
 
 yTicks.start: 0
 yTicks.end: 2500
@@ -54,7 +54,7 @@ calculatedFields.0.expression: year([Date time])
 calculatedFields.1.name: Month
 calculatedFields.1.expression: month([Date time])
 
-filters.0: [Date time] >= date(2020, 6, 1)
+filter: [Date time] >= date(2020, 6, 1)
 
 aggregation.categoryFields.0: Year
 aggregation.categoryFields.1: Month
@@ -65,8 +65,8 @@ precision: 1
 datetime: Day
 
 xField: Month
-yFields.0: SUM(Home (kWh))
-colorFields.0: Year
+yFields.0: Home (kWh)
+colorField: Year
 
 yTicks.start: 0
 yTicks.end: 1500
@@ -89,7 +89,7 @@ calculatedFields.1.expression: month([Date time])
 calculatedFields.2.name: Solar Offset (kWh)
 calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
 
-filters.0: [Date time] >= date(2020, 6, 1)
+filter: [Date time] >= date(2020, 6, 1)
 
 aggregation.categoryFields.0: Year
 aggregation.categoryFields.1: Month
@@ -100,8 +100,8 @@ precision: 1
 datetime: Day
 
 xField: Month
-yFields.0: SUM(Solar Offset (kWh))
-colorFields.0: Year
+yFields.0: Solar Offset (kWh)
+colorField: Year
 
 yTicks.start: -1000
 yTicks.end: 1500

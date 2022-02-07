@@ -19,7 +19,7 @@ calculatedFields.0.expression: date(year([Date time]), 1, 1)
 calculatedFields.1.name: Grid Surplus (kWh)
 calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 aggregation.categoryFields.0: Year
 aggregation.measures.0.field: From Grid (kWh)
@@ -36,9 +36,9 @@ precision: 1
 datetime: Year
 
 categoryFields.0: Year
-fields.0: SUM(Grid Surplus (kWh))
-fields.1: SUM(To Grid (kWh))
-fields.2: SUM(From Grid (kWh))
+fields.0: Grid Surplus (kWh)
+fields.1: To Grid (kWh)
+fields.2: From Grid (kWh)
 ~~~
 
 ~~~ line-chart
@@ -56,7 +56,7 @@ calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
 calculatedFields.1.name: Grid Surplus (kWh)
 calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 aggregation.categoryFields.0: Month
 aggregation.measures.0.field: Grid Surplus (kWh)
@@ -66,7 +66,7 @@ precision: 1
 datetime: Month
 
 xField: Month
-yFields.0: SUM(Grid Surplus (kWh))
+yFields.0: Grid Surplus (kWh)
 
 yTicks.start: -1200
 yTicks.end: 1200
@@ -94,7 +94,7 @@ data.url: solar.csv
 variables.start: date(year(now()) - 1, 1, 1)
 variables.end: date(year(now()), month(now()) + 1, 1)
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 precision: 1
 datetime: Month
@@ -128,7 +128,7 @@ variables.end: date(year(now()), month(now()) + 1, 1)
 calculatedFields.0.name: Month
 calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
 
-filters.0: ([Date time] >= start) && ([Date time] < end)
+filter: [Date time] >= start && [Date time] < end
 
 aggregation.categoryFields.0: Month
 aggregation.measures.0.field: From Grid (kWh)
@@ -140,8 +140,8 @@ precision: 1
 datetime: Month
 
 xField: Month
-yFields.0: SUM(From Grid (kWh))
-yFields.1: SUM(To Grid (kWh))
+yFields.0: From Grid (kWh)
+yFields.1: To Grid (kWh)
 
 yTicks.start: -1200
 yTicks.end: 1200

@@ -21,7 +21,7 @@ calculatedFields.1.expression: month([Date time])
 calculatedFields.2.name: Solar Offset (kWh)
 calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
 
-filters.0: [Date time] >= date(2020, 6, 1)
+filter: [Date time] >= date(2020, 6, 1)
 
 aggregation.categoryFields.0: Year
 aggregation.categoryFields.1: Month
@@ -35,7 +35,7 @@ aggregation.measures.3.field: HVAC Total (kWh)
 aggregation.measures.3.function: Average
 
 postCalculatedFields.0.name: HVAC %
-postCalculatedFields.0.expression: if([AVERAGE(HVAC Total (kWh))] != null,fixed(100 * [AVERAGE(HVAC Total (kWh))] / [SUM(Home (kWh))], 1) + '%', '')
+postCalculatedFields.0.expression: if([HVAC Total (kWh)] != null,fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + '%', '')
 
 sorts.0.field: Year
 sorts.0.desc: true
