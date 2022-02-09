@@ -15,35 +15,35 @@ height: 350
 
 data.url: solar.csv
 
-calculatedFields.0.name: Month
-calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+calc.0.name: Month
+calc.0.expr: date(year([Date time]), month([Date time]), 1)
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.start: date(year(now()) - 1, 1, 1)
+var.end: date(year(now()), month(now()) + 1, 1)
 
 filter: [Date time] >= start && [Date time] < end
 
-aggregation.categoryFields.0: Month
-aggregation.measures.0.name: Average From Powerwall (kWh)
-aggregation.measures.0.field: From Powerwall (kWh)
-aggregation.measures.0.function: Average
+agg.category.0: Month
+agg.measure.0.name: Average From Powerwall (kWh)
+agg.measure.0.field: From Powerwall (kWh)
+agg.measure.0.func: Average
+
+x: Month
+y.0: Average From Powerwall (kWh)
+
+xtick.start: start
+xtick.end: date(year(end), month(end) - 1, 1)
+xtick.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
+xtick.skip: 2
+
+ytick.start: 0
+ytick.end: 30
+ytick.count: 4
+
+xline.0.value: date(year(end), 1, 1)
 
 precision: 1
 datetime: Month
-
-xField: Month
-yFields.0: Average From Powerwall (kWh)
-
-yTicks.start: 0
-yTicks.end: 30
-yTicks.count: 4
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -53,25 +53,25 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.start: date(year(now()) - 1, 1, 1)
+var.end: date(year(now()), month(now()) + 1, 1)
 
 filter: [Date time] >= start && [Date time] < end
 
+x: Date time
+y.0: From Powerwall (kWh)
+
+xtick.start: start
+xtick.end: date(year(end), month(end) - 1, 1)
+xtick.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
+xtick.skip: 2
+
+ytick.start: 0
+ytick.end: 50
+ytick.count: 6
+
+xline.0.value: date(year(end), 1, 1)
+
 precision: 1
 datetime: Month
-
-xField: Date time
-yFields.0: From Powerwall (kWh)
-
-yTicks.start: 0
-yTicks.end: 50
-yTicks.count: 6
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~

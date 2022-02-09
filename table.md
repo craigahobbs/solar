@@ -10,40 +10,40 @@ Table
 
 ~~~ data-table
 data.url: solar.csv
-data.joins.0.url: hvac.csv
-data.joins.0.leftExpression: year([Date time]) + '-' + month([Date time])
-data.joins.0.rightExpression: year([Date]) + '-' + month([Date])
+data.join.0.url: hvac.csv
+data.join.0.left: year([Date time]) + '-' + month([Date time])
+data.join.0.right: year([Date]) + '-' + month([Date])
 
-calculatedFields.0.name: Year
-calculatedFields.0.expression: year([Date time])
-calculatedFields.1.name: Month
-calculatedFields.1.expression: month([Date time])
-calculatedFields.2.name: Solar Offset (kWh)
-calculatedFields.2.expression: [Solar Energy (kWh)] - [Home (kWh)]
+calc.0.name: Year
+calc.0.expr: year([Date time])
+calc.1.name: Month
+calc.1.expr: month([Date time])
+calc.2.name: Solar Offset (kWh)
+calc.2.expr: [Solar Energy (kWh)] - [Home (kWh)]
 
 filter: [Date time] >= date(2020, 6, 1)
 
-aggregation.categoryFields.0: Year
-aggregation.categoryFields.1: Month
-aggregation.measures.0.field: Solar Offset (kWh)
-aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Solar Energy (kWh)
-aggregation.measures.1.function: Sum
-aggregation.measures.2.field: Home (kWh)
-aggregation.measures.2.function: Sum
-aggregation.measures.3.field: HVAC Total (kWh)
-aggregation.measures.3.function: Average
+agg.category.0: Year
+agg.category.1: Month
+agg.measure.0.field: Solar Offset (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: Solar Energy (kWh)
+agg.measure.1.func: Sum
+agg.measure.2.field: Home (kWh)
+agg.measure.2.func: Sum
+agg.measure.3.field: HVAC Total (kWh)
+agg.measure.3.func: Average
 
-postCalculatedFields.0.name: HVAC %
-postCalculatedFields.0.expression: if([HVAC Total (kWh)] != null,fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + '%', '')
+aggcalc.0.name: HVAC %
+aggcalc.0.expr: if([HVAC Total (kWh)] != null,fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + '%', '')
 
-sorts.0.field: Year
-sorts.0.desc: true
-sorts.1.field: Month
-sorts.1.desc: true
+sort.0.field: Year
+sort.0.desc: true
+sort.1.field: Month
+sort.1.desc: true
+
+category.0: Year
 
 precision: 1
 datetime: Month
-
-categoryFields.0: Year
 ~~~

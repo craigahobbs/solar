@@ -11,26 +11,26 @@ Solar |
 ~~~ data-table
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Year
-calculatedFields.0.expression: year([Date time])
-calculatedFields.1.name: Solar Offset (kWh)
-calculatedFields.1.expression: [Solar Energy (kWh)] - [Home (kWh)]
+calc.0.name: Year
+calc.0.expr: year([Date time])
+calc.1.name: Solar Offset (kWh)
+calc.1.expr: [Solar Energy (kWh)] - [Home (kWh)]
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Year
-aggregation.measures.0.field: Solar Offset (kWh)
-aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Solar Energy (kWh)
-aggregation.measures.1.function: Sum
-aggregation.measures.2.field: Home (kWh)
-aggregation.measures.2.function: Sum
+agg.category.0: Year
+agg.measure.0.field: Solar Offset (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: Solar Energy (kWh)
+agg.measure.1.func: Sum
+agg.measure.2.field: Home (kWh)
+agg.measure.2.func: Sum
 
-sorts.0.field: Year
-sorts.0.desc: true
+sort.0.field: Year
+sort.0.desc: true
 
 precision: 1
 datetime: Year
@@ -43,40 +43,40 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Month
-calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
-calculatedFields.1.name: Solar Offset (kWh)
-calculatedFields.1.expression: [Solar Energy (kWh)] - [Home (kWh)]
+calc.0.name: Month
+calc.0.expr: date(year([Date time]), month([Date time]), 1)
+calc.1.name: Solar Offset (kWh)
+calc.1.expr: [Solar Energy (kWh)] - [Home (kWh)]
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Month
-aggregation.measures.0.field: Solar Offset (kWh)
-aggregation.measures.0.function: Sum
+agg.category.0: Month
+agg.measure.0.field: Solar Offset (kWh)
+agg.measure.0.func: Sum
+
+x: Month
+y.0: Solar Offset (kWh)
+
+xtick.start: vStart
+xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
+xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
+xtick.skip: 2
+
+ytick.start: -1200
+ytick.end: 1200
+ytick.count: 9
+ytick.skip: 1
+
+xline.0.value: date(year(vEnd), 1, 1)
+
+yline.0.value: 0
+yline.0.label: ''
 
 precision: 1
 datetime: Month
-
-xField: Month
-yFields.0: Solar Offset (kWh)
-
-yTicks.start: -1200
-yTicks.end: 1200
-yTicks.count: 9
-yTicks.skip: 1
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-yAnnotations.0.value: 0
-yAnnotations.0.label: ''
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -86,36 +86,36 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Month
-calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+calc.0.name: Month
+calc.0.expr: date(year([Date time]), month([Date time]), 1)
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Month
-aggregation.measures.0.field: Home (kWh)
-aggregation.measures.0.function: Sum
-aggregation.measures.1.field: Solar Energy (kWh)
-aggregation.measures.1.function: Sum
+agg.category.0: Month
+agg.measure.0.field: Home (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: Solar Energy (kWh)
+agg.measure.1.func: Sum
+
+x: Month
+y.0: Home (kWh)
+y.1: Solar Energy (kWh)
+
+xtick.start: vStart
+xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
+xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
+xtick.skip: 2
+
+ytick.start: 0
+ytick.end: 2500
+ytick.count: 11
+ytick.skip: 1
+
+xline.0.value: date(year(vEnd), 1, 1)
 
 precision: 1
 datetime: Month
-
-xField: Month
-yFields.0: Home (kWh)
-yFields.1: Solar Energy (kWh)
-
-yTicks.start: 0
-yTicks.end: 2500
-yTicks.count: 11
-yTicks.skip: 1
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~

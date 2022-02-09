@@ -11,34 +11,29 @@ Grid |
 ~~~ data-table
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Year
-calculatedFields.0.expression: date(year([Date time]), 1, 1)
-calculatedFields.1.name: Grid Surplus (kWh)
-calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
+calc.0.name: Year
+calc.0.expr: date(year([Date time]), 1, 1)
+calc.1.name: Grid Surplus (kWh)
+calc.1.expr: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Year
-aggregation.measures.0.field: From Grid (kWh)
-aggregation.measures.0.function: Sum
-aggregation.measures.1.field: To Grid (kWh)
-aggregation.measures.1.function: Sum
-aggregation.measures.2.field: Grid Surplus (kWh)
-aggregation.measures.2.function: Sum
+agg.category.0: Year
+agg.measure.0.field: Grid Surplus (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: To Grid (kWh)
+agg.measure.1.func: Sum
+agg.measure.2.field: From Grid (kWh)
+agg.measure.2.func: Sum
 
-sorts.0.field: Year
-sorts.0.desc: true
+sort.0.field: Year
+sort.0.desc: true
 
 precision: 1
 datetime: Year
-
-categoryFields.0: Year
-fields.0: Grid Surplus (kWh)
-fields.1: To Grid (kWh)
-fields.2: From Grid (kWh)
 ~~~
 
 ~~~ line-chart
@@ -48,40 +43,40 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Month
-calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
-calculatedFields.1.name: Grid Surplus (kWh)
-calculatedFields.1.expression: -[To Grid (kWh)] - [From Grid (kWh)]
+calc.0.name: Month
+calc.0.expr: date(year([Date time]), month([Date time]), 1)
+calc.1.name: Grid Surplus (kWh)
+calc.1.expr: -[To Grid (kWh)] - [From Grid (kWh)]
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Month
-aggregation.measures.0.field: Grid Surplus (kWh)
-aggregation.measures.0.function: Sum
+agg.category.0: Month
+agg.measure.0.field: Grid Surplus (kWh)
+agg.measure.0.func: Sum
+
+x: Month
+y.0: Grid Surplus (kWh)
+
+xtick.start: vStart
+xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
+xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
+xtick.skip: 2
+
+ytick.start: -1200
+ytick.end: 1200
+ytick.count: 9
+ytick.skip: 1
+
+xline.0.value: date(year(vEnd), 1, 1)
+
+yline.0.value: 0
+yline.0.label: ''
 
 precision: 1
 datetime: Month
-
-xField: Month
-yFields.0: Grid Surplus (kWh)
-
-yTicks.start: -1200
-yTicks.end: 1200
-yTicks.count: 9
-yTicks.skip: 1
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-yAnnotations.0.value: 0
-yAnnotations.0.label: ''
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -91,28 +86,28 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
+
+x: Date time
+y.0: From Grid (kWh)
+y.1: To Grid (kWh)
+
+xtick.start: vStart
+xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
+xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
+xtick.skip: 2
+
+ytick.start: -80
+ytick.end: 120
+ytick.count: 6
+
+xline.0.value: date(year(vEnd), 1, 1)
 
 precision: 1
 datetime: Month
-
-xField: Date time
-yFields.0: From Grid (kWh)
-yFields.1: To Grid (kWh)
-
-yTicks.start: -80
-yTicks.end: 120
-yTicks.count: 6
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~
 
 ~~~ line-chart
@@ -122,35 +117,35 @@ height: 350
 
 data.url: solar.csv
 
-variables.start: date(year(now()) - 1, 1, 1)
-variables.end: date(year(now()), month(now()) + 1, 1)
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
 
-calculatedFields.0.name: Month
-calculatedFields.0.expression: date(year([Date time]), month([Date time]), 1)
+calc.0.name: Month
+calc.0.expr: date(year([Date time]), month([Date time]), 1)
 
-filter: [Date time] >= start && [Date time] < end
+filter: [Date time] >= vStart && [Date time] < vEnd
 
-aggregation.categoryFields.0: Month
-aggregation.measures.0.field: From Grid (kWh)
-aggregation.measures.0.function: Sum
-aggregation.measures.1.field: To Grid (kWh)
-aggregation.measures.1.function: Sum
+agg.category.0: Month
+agg.measure.0.field: From Grid (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: To Grid (kWh)
+agg.measure.1.func: Sum
+
+x: Month
+y.0: From Grid (kWh)
+y.1: To Grid (kWh)
+
+xtick.start: vStart
+xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
+xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
+xtick.skip: 2
+
+ytick.start: -1200
+ytick.end: 1200
+ytick.count: 9
+
+xline.0.value: date(year(vEnd), 1, 1)
 
 precision: 1
 datetime: Month
-
-xField: Month
-yFields.0: From Grid (kWh)
-yFields.1: To Grid (kWh)
-
-yTicks.start: -1200
-yTicks.end: 1200
-yTicks.count: 9
-
-xTicks.start: start
-xTicks.end: date(year(end), month(end) - 1, 1)
-xTicks.count: ((12 * (year(end) - year(start))) - month(start)) + month(end)
-xTicks.skip: 2
-
-xAnnotations.0.value: date(year(end), 1, 1)
 ~~~
