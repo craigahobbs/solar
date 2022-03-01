@@ -40,9 +40,12 @@ agg.measure.4.field: Auto Total (kWh)
 agg.measure.4.func: Average
 
 aggcalc.0.name: HVAC %
-aggcalc.0.expr: if([HVAC Total (kWh)] != null,fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + '%', '')
+aggcalc.0.expr: if([HVAC Total (kWh)] == null, '', fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + '%')
 aggcalc.1.name: Auto %
-aggcalc.1.expr: if([Auto Total (kWh)] != null,fixed(100 * [Auto Total (kWh)] / [Home (kWh)], 1) + '%', '')
+aggcalc.1.expr: if([Auto Total (kWh)] == null, '', fixed(100 * [Auto Total (kWh)] / [Home (kWh)], 1) + '%')
+aggcalc.2.name: Other %
+aggcalc.2.expr: if([HVAC Total (kWh)] == null == [Auto Total (kWh)] == null, '', \
+    100 - fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) - fixed(100 * [Auto Total (kWh)] / [Home (kWh)], 1) + '%')
 
 sort.0.field: Year
 sort.0.desc: true
