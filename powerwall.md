@@ -13,7 +13,7 @@ title: 'From Powerwall (Monthly)'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 calc.0.name: Month
 calc.0.expr: date(year([Date time]), month([Date time]), 1)
@@ -51,7 +51,7 @@ title: 'From Powerwall'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.start: date(year(now()) - 1, 1, 1)
 var.end: date(year(now()), month(now()) + 1, 1)

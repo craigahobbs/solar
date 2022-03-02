@@ -9,7 +9,7 @@ Solar |
 # Solar
 
 ~~~ data-table
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)
@@ -41,7 +41,7 @@ title: 'Solar Offset (Monthly)'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)
@@ -84,7 +84,7 @@ title: 'Solar and Home (Monthly)'
 width: 1100
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)

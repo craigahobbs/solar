@@ -9,7 +9,7 @@ Grid |
 # Grid
 
 ~~~ data-table
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)
@@ -41,7 +41,7 @@ title: 'Grid Surplus (Monthly)'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)
@@ -84,7 +84,7 @@ title: 'To/From Grid'
 width: 1050
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)
@@ -115,7 +115,7 @@ title: 'To/From Grid (Monthly)'
 width: 1100
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 var.vStart: date(year(now()) - 1, 1, 1)
 var.vEnd: date(year(now()), month(now()) + 1, 1)

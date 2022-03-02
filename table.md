@@ -9,11 +9,11 @@ Table
 # Monthly Table
 
 ~~~ data-table
-data.url: solar.csv
-data.join.0.url: hvac.csv
+data.url: data/solar.csv
+data.join.0.url: data/hvac.csv
 data.join.0.left: year([Date time]) + '-' + month([Date time])
 data.join.0.right: year([Date]) + '-' + month([Date])
-data.join.1.url: auto.csv
+data.join.1.url: data/auto.csv
 data.join.1.left: year([Date time]) + '-' + month([Date time])
 data.join.1.right: year([Date]) + '-' + month([Date])
 

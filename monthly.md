@@ -13,7 +13,7 @@ title: 'Monthly Solar Energy'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 calc.0.name: Year
 calc.0.expr: year([Date time])
@@ -47,7 +47,7 @@ title: 'Monthly Power Usage'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 calc.0.name: Year
 calc.0.expr: year([Date time])
@@ -80,7 +80,7 @@ title: 'Monthly Solar Offset'
 width: 900
 height: 350
 
-data.url: solar.csv
+data.url: data/solar.csv
 
 calc.0.name: Year
 calc.0.expr: year([Date time])
