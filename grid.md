@@ -1,5 +1,6 @@
 [Home](#url=README.md) |
 [Solar](#url=solar.md) |
+[Self-Powered](#url=self-powered.md) |
 Grid |
 [Powerwall](#url=powerwall.md) |
 [Monthly](#url=monthly.md) |
