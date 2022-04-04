@@ -64,5 +64,4 @@ sort.1.desc: true
 category.0: Year
 
 precision: 1
-datetime: Month
 ~~~

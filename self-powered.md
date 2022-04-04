@@ -10,7 +10,6 @@ Self-Powered |
 # Self-Powered by Month
 
 ~~~ line-chart
-title: 'Monthly Self-Powered'
 width: 900
 height: 350
 
