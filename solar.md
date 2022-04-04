@@ -49,9 +49,6 @@ precision: 1
 datetime: Month
 ~~~
 
-
-### Annual Solar Offset
-
 ~~~ data-table
 data.url: data/solar.csv
 
@@ -78,39 +75,4 @@ sort.0.desc: true
 
 precision: 1
 datetime: Year
-~~~
-
-
-### Average Daily Solar Offset by Month
-
-~~~ data-table
-data.url: data/solar.csv
-
-calc.0.name: Year
-calc.0.expr: year([Date time])
-calc.1.name: Month
-calc.1.expr: month([Date time])
-calc.2.name: Offset (kWh)
-calc.2.expr: [Solar Energy (kWh)] - [Home (kWh)]
-
-filter: [Date time] >= date(2020, 6, 1)
-
-agg.category.0: Year
-agg.category.1: Month
-agg.measure.0.field: Offset (kWh)
-agg.measure.0.func: Average
-agg.measure.1.name: Solar (kWh)
-agg.measure.1.field: Solar Energy (kWh)
-agg.measure.1.func: Average
-agg.measure.2.field: Home (kWh)
-agg.measure.2.func: Average
-
-sort.0.field: Year
-sort.0.desc: true
-sort.1.field: Month
-sort.1.desc: true
-
-category.0: Year
-
-precision: 1
 ~~~

@@ -9,34 +9,6 @@ Grid |
 
 # Grid
 
-~~~ data-table
-data.url: data/solar.csv
-
-var.vStart: date(year(now()) - 1, 1, 1)
-var.vEnd: date(year(now()), month(now()) + 1, 1)
-
-calc.0.name: Year
-calc.0.expr: date(year([Date time]), 1, 1)
-calc.1.name: Grid Surplus (kWh)
-calc.1.expr: -[To Grid (kWh)] - [From Grid (kWh)]
-
-filter: [Date time] >= vStart && [Date time] < vEnd
-
-agg.category.0: Year
-agg.measure.0.field: Grid Surplus (kWh)
-agg.measure.0.func: Sum
-agg.measure.1.field: To Grid (kWh)
-agg.measure.1.func: Sum
-agg.measure.2.field: From Grid (kWh)
-agg.measure.2.func: Sum
-
-sort.0.field: Year
-sort.0.desc: true
-
-precision: 1
-datetime: Year
-~~~
-
 ~~~ line-chart
 title: 'Grid Surplus (Monthly)'
 width: 900
@@ -78,6 +50,34 @@ yline.0.label: ''
 
 precision: 1
 datetime: Month
+~~~
+
+~~~ data-table
+data.url: data/solar.csv
+
+var.vStart: date(year(now()) - 1, 1, 1)
+var.vEnd: date(year(now()), month(now()) + 1, 1)
+
+calc.0.name: Year
+calc.0.expr: date(year([Date time]), 1, 1)
+calc.1.name: Grid Surplus (kWh)
+calc.1.expr: -[To Grid (kWh)] - [From Grid (kWh)]
+
+filter: [Date time] >= vStart && [Date time] < vEnd
+
+agg.category.0: Year
+agg.measure.0.field: Grid Surplus (kWh)
+agg.measure.0.func: Sum
+agg.measure.1.field: To Grid (kWh)
+agg.measure.1.func: Sum
+agg.measure.2.field: From Grid (kWh)
+agg.measure.2.func: Sum
+
+sort.0.field: Year
+sort.0.desc: true
+
+precision: 1
+datetime: Year
 ~~~
 
 ~~~ line-chart
