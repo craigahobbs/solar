@@ -46,7 +46,7 @@ ytick.skip: 1
 xline.0.value: date(year(vEnd), 1, 1)
 
 precision: 1
-datetime: Month
+datetime: Day
 ~~~
 
 ~~~ data-table
