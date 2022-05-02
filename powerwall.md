@@ -44,7 +44,7 @@ ytick.count: 4
 xline.0.value: date(year(end), 1, 1)
 
 precision: 1
-datetime: Month
+datetime: Day
 ~~~
 
 ~~~ line-chart

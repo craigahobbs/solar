@@ -49,7 +49,7 @@ yline.0.value: 0
 yline.0.label: ''
 
 precision: 1
-datetime: Month
+datetime: Day
 ~~~
 
 ~~~ data-table
