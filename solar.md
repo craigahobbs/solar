@@ -58,19 +58,21 @@ dataLineChart(monthly, objectNew( \
     'y', arrayNew('Home (kWh)', 'Solar Energy (kWh)'), \
     'precision', 1, \
     'datetime', 'month', \
-    'xtick', objectNew( \
+    'xTicks', objectNew( \
         'start', start, \
         'end', end, \
         'count', xtickCount, \
         'skip', 2 \
     ), \
-    'ytick', objectNew( \
+    'yTicks', objectNew( \
         'start', 0, \
         'end', 2500, \
         'count', 11, \
         'skip', 1 \
     ), \
-    'xline', arrayNew(objectNew('value', datetimeNew(datetimeYear(end), 1, 1))) \
+    'xLines', arrayNew( \
+        objectNew('value', datetimeNew(datetimeYear(end), 1, 1)) \
+    ) \
 ))
 
 # Render the total annual table
