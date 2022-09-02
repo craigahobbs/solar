@@ -9,70 +9,70 @@ Solar |
 
 # Solar Energy Generated and Power Used
 
-~~~ line-chart
-width: 1100
-height: 350
+~~~ markdown-script
+# Load the daily solar data
+data = dataParseCSV(fetch('data/solar.csv', null, true))
 
-data.url: data/solar.csv
+# Compute the x-axis extents
+maxDateData = dataAggregate(data, objectNew( \
+    'measures', arrayNew( \
+        objectNew('field', 'Date time', 'function', 'max') \
+    ) \
+))
+maxDate = objectGet(arrayGet(maxDateData, 0), 'Date time')
+start = datetimeNew(datetimeYear(maxDate) - 1, 1, 1)
+end = datetimeNew(datetimeYear(maxDate), datetimeMonth(maxDate), 1)
 
-var.vStart: date(year(now()) - 1, 1, 1)
-var.vEnd: date(year(now()), month(now()) + 1, 1)
+# Add calculated fields
+dataCalculatedField(data, 'Month', 'date(year([Date time]), month([Date time]), 1)')
+dataCalculatedField(data, 'Year', 'year([Date time])')
+dataCalculatedField(data, 'Solar Offset (kWh)', '[Solar Energy (kWh)] - [Home (kWh)]')
 
-calc.0.name: Month
-calc.0.expr: date(year([Date time]), month([Date time]), 1)
+# Compute total monthly home energy usage and solar power generation
+monthly = dataAggregate(data, objectNew( \
+    'categories', arrayNew('Month'), \
+    'measures', arrayNew( \
+        objectNew('field', 'Home (kWh)', 'function', 'sum'), \
+        objectNew('field', 'Solar Energy (kWh)', 'function', 'sum') \
+    ) \
+))
+monthly = dataFilter(monthly, 'Month >= start', objectNew('start', start))
 
-filter: [Date time] >= vStart && [Date time] < vEnd
+# Compute the total annual home energy usage, solar energy generation, and solar offset
+yearly = dataAggregate(data, objectNew( \
+    'categories', arrayNew('Year'), \
+    'measures', arrayNew( \
+        objectNew('field', 'Home (kWh)', 'function', 'sum'), \
+        objectNew('field', 'Solar Energy (kWh)', 'function', 'sum'), \
+        objectNew('field', 'Solar Offset (kWh)', 'function', 'sum') \
+    ) \
+))
+dataSort(yearly, arrayNew(arrayNew('Year', true)))
 
-agg.category.0: Month
-agg.measure.0.field: Home (kWh)
-agg.measure.0.func: Sum
-agg.measure.1.field: Solar Energy (kWh)
-agg.measure.1.func: Sum
+# Draw the monthly line chart
+xtickCount = (12 * (datetimeYear(end) - datetimeYear(start)) - datetimeMonth(start)) + datetimeMonth(end) + 1
+dataLineChart(monthly, objectNew( \
+    'width', 1100, \
+    'height', 350, \
+    'x', 'Month', \
+    'y', arrayNew('Home (kWh)', 'Solar Energy (kWh)'), \
+    'precision', 1, \
+    'datetime', 'month', \
+    'xtick', objectNew( \
+        'start', start, \
+        'end', end, \
+        'count', xtickCount, \
+        'skip', 2 \
+    ), \
+    'ytick', objectNew( \
+        'start', 0, \
+        'end', 2500, \
+        'count', 11, \
+        'skip', 1 \
+    ), \
+    'xline', arrayNew(objectNew('value', datetimeNew(datetimeYear(end), 1, 1))) \
+))
 
-x: Month
-y.0: Home (kWh)
-y.1: Solar Energy (kWh)
-
-xtick.start: vStart
-xtick.end: date(year(vEnd), month(vEnd) - 1, 1)
-xtick.count: ((12 * (year(vEnd) - year(vStart))) - month(vStart)) + month(vEnd)
-xtick.skip: 2
-
-ytick.start: 0
-ytick.end: 2500
-ytick.count: 11
-ytick.skip: 1
-
-xline.0.value: date(year(vEnd), 1, 1)
-
-precision: 1
-datetime: Day
-~~~
-
-~~~ data-table
-data.url: data/solar.csv
-
-var.vStart: date(year(now()) - 1, 1, 1)
-var.vEnd: date(year(now()), month(now()) + 1, 1)
-
-calc.0.name: Year
-calc.0.expr: year([Date time])
-calc.1.name: Solar Offset (kWh)
-calc.1.expr: [Solar Energy (kWh)] - [Home (kWh)]
-
-filter: [Date time] >= vStart && [Date time] < vEnd
-
-agg.category.0: Year
-agg.measure.0.field: Solar Offset (kWh)
-agg.measure.0.func: Sum
-agg.measure.1.field: Solar Energy (kWh)
-agg.measure.1.func: Sum
-agg.measure.2.field: Home (kWh)
-agg.measure.2.func: Sum
-
-sort.0.field: Year
-sort.0.desc: true
-
-precision: 1
-datetime: Year
+# Render the total annual table
+dataTable(yearly, objectNew('precision', 1))
 ~~~
