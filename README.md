@@ -1,16 +1,13 @@
+[Home](https://craigahobbs.github.io/)
+
 # Solar Dashboard
 
-The **Solar Dashboard** explores the performance of my home's solar panel and backup battery system.
+The
+[Solar Dashboard](https://craigahobbs.github.io/solar/#url=solar.md&var.vPage='Solar')
+explores the performance of my home's solar panel and home battery system. Here are the system's
+specifications:
 
-[Open the Solar Dashboard](https://craigahobbs.github.io/solar/#url=solar.md)
+- 11 kW solar panels
+- 40 kWh home battery
 
-
-### About
-
-The dashboard is composed entirely of Markdown text documents and hosted using
-[markdown-up](https://github.com/craigahobbs/markdown-up#readme).
-It makes extensive use of markdown-up's markdown-charts, live-rendered charts from special fenced
-code blocks.
-
-The dashboard source code is
-[here](https://github.com/craigahobbs/solar).
+Click [here to open the dashboard](https://craigahobbs.github.io/solar/#url=solar.md&var.vPage='Solar').
