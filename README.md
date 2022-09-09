@@ -1,5 +1,3 @@
-[Home](https://craigahobbs.github.io/)
-
 # Solar Dashboard
 
 The
