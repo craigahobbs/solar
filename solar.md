@@ -7,21 +7,21 @@ async function solarMain()
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
     pages = arrayNew( \
-        objectNew('fn', solarSolar, 'menu', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
-        objectNew('fn', solarSelfPowered, 'menu', 'Self-Powered', 'title', 'Self-Powered by Month'), \
-        objectNew('fn', solarGrid, 'menu', 'Grid', 'title', 'Grid'), \
-        objectNew('fn', solarPowerwall, 'menu', 'Powerwall', 'title', 'Powerwall'), \
-        objectNew('fn', solarMonthly, 'menu', 'Monthly', 'title', 'Monthly'), \
-        objectNew('fn', solarMonthlyTable, 'menu', 'Table', 'title', 'Monthly Table') \
+        objectNew('fn', solarSolar, 'name', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
+        objectNew('fn', solarSelfPowered, 'name', 'Self-Powered', 'title', 'Self-Powered by Month'), \
+        objectNew('fn', solarGrid, 'name', 'Grid', 'title', 'Grid'), \
+        objectNew('fn', solarPowerwall, 'name', 'Powerwall', 'title', 'Powerwall'), \
+        objectNew('fn', solarMonthly, 'name', 'Monthly', 'title', 'Monthly'), \
+        objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
     )
     ixPage = 0
     curPage = null
     pageLoop:
         page = arrayGet(pages, ixPage)
-        pageMenu = objectGet(page, 'menu')
-        isCurPage = (vPage == null && ixPage == 0) || vPage == pageMenu
+        pageName = objectGet(page, 'name')
+        isCurPage = (vPage == null && ixPage == 0) || vPage == pageName
         curPage = if(isCurPage, page, curPage)
-        markdownPrint('| ' + if(isCurPage, pageMenu, '[' + pageMenu + "](#var.vPage='" + pageMenu + "')"))
+        markdownPrint('| ' + if(isCurPage, pageName, '[' + pageName + "](#var.vPage='" + pageName + "')"))
         ixPage = ixPage + 1
     jumpif (ixPage < arrayLength(pages)) pageLoop
 
