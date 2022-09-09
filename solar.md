@@ -6,7 +6,6 @@
 async function solarMain()
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
-    ixPage = 0
     pages = arrayNew( \
         objectNew('fn', solarSolar, 'menu', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
         objectNew('fn', solarSelfPowered, 'menu', 'Self-Powered', 'title', 'Self-Powered by Month'), \
@@ -15,12 +14,14 @@ async function solarMain()
         objectNew('fn', solarMonthly, 'menu', 'Monthly', 'title', 'Monthly'), \
         objectNew('fn', solarMonthlyTable, 'menu', 'Table', 'title', 'Monthly Table') \
     )
-    curPage = arrayGet(pages, 0)
+    ixPage = 0
+    curPage = null
     pageLoop:
         page = arrayGet(pages, ixPage)
         pageMenu = objectGet(page, 'menu')
-        curPage = if(vPage == pageMenu, page, curPage)
-        markdownPrint('| ' + if(vPage == pageMenu, pageMenu, '[' + pageMenu + "](#var.vPage='" + pageMenu + "')"))
+        isCurPage = (vPage == null && ixPage == 0) || vPage == pageMenu
+        curPage = if(isCurPage, page, curPage)
+        markdownPrint('| ' + if(isCurPage, pageMenu, '[' + pageMenu + "](#var.vPage='" + pageMenu + "')"))
         ixPage = ixPage + 1
     jumpif (ixPage < arrayLength(pages)) pageLoop
 
