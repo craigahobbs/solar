@@ -37,7 +37,7 @@ endfunction
 
 
 # Chart size constants
-solarChartWidthNoTitleY = 1100
+solarChartWidthWide = 1100
 solarChartWidth = 900
 solarChartHeight = 350
 
@@ -50,7 +50,7 @@ async function solarSolar()
 
     # Draw the monthly solar energy line chart
     dataLineChart(monthly, objectNew( \
-        'width', solarChartWidthNoTitleY, \
+        'width', solarChartWidthWide, \
         'height', solarChartHeight, \
         'x', 'Date', \
         'y', arrayNew('Home (kWh)', 'Solar Energy (kWh)'), \
@@ -173,7 +173,7 @@ async function solarGrid()
     # Draw the hourly to/from grid line chart
     dataLineChart(data, objectNew( \
         'title', 'To/From Grid', \
-        'width', solarChartWidthNoTitleY, \
+        'width', solarChartWidthWide, \
         'height', solarChartHeight, \
         'x', 'Date time', \
         'y', arrayNew('From Grid (kWh)', 'To Grid (kWh)'), \
@@ -195,7 +195,7 @@ async function solarGrid()
     # Draw the monthly to/from grid line chart
     dataLineChart(monthly, objectNew( \
         'title', 'To/From Grid (Monthly)', \
-        'width', solarChartWidthNoTitleY, \
+        'width', solarChartWidthWide, \
         'height', solarChartHeight, \
         'x', 'Date', \
         'y', arrayNew('From Grid (kWh)', 'To Grid (kWh)'), \
