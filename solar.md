@@ -16,7 +16,7 @@ async function solarMain()
         objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
     ) do
         pageName = objectGet(page, 'name')
-        if pageName || (vPage == null && ixPage == 0) then
+        if vPage == pageName || (vPage == null && ixPage == 0) then
             curPage = page
             markdownPrint('| ' + markdownEscape(pageName))
         else then
