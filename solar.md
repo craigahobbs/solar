@@ -6,24 +6,25 @@
 async function solarMain()
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
-    pages = arrayNew( \
+    curPage = null
+    foreach page, ixPage in arrayNew( \
         objectNew('fn', solarSolar, 'name', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
         objectNew('fn', solarSelfPowered, 'name', 'Self-Powered', 'title', 'Self-Powered by Month'), \
         objectNew('fn', solarGrid, 'name', 'Grid', 'title', 'Grid'), \
         objectNew('fn', solarPowerwall, 'name', 'Powerwall', 'title', 'Powerwall'), \
         objectNew('fn', solarMonthly, 'name', 'Monthly', 'title', 'Monthly'), \
         objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
-    )
-    ixPage = 0
-    curPage = null
-    pageLoop:
-        page = arrayGet(pages, ixPage)
+    ) do
         pageName = objectGet(page, 'name')
         isCurPage = (vPage == null && ixPage == 0) || vPage == pageName
-        curPage = if(isCurPage, page, curPage)
-        markdownPrint('| ' + if(isCurPage, pageName, '[' + pageName + "](#var.vPage='" + pageName + "')"))
-        ixPage = ixPage + 1
-    jumpif (ixPage < arrayLength(pages)) pageLoop
+        if isCurPage then
+            curPage = page
+            markdownPrint('| ' + markdownEscape(pageName))
+        else then
+            markdownPrint('| [' + markdownEscape(pageName) + "](#var.vPage='" + encodeURIComponent(pageName) + \
+                if(vYears != null, "'&var.vYears=" + vYears, "'") + ')')
+        endif
+    endforeach
 
     # Set the title
     curPageTitle = objectGet(curPage, 'title')
@@ -374,23 +375,36 @@ endfunction
 
 async function solarLoadData(aggFn)
     aggFn = if(aggFn != null, aggFn, 'sum')
-    nYears = if(vYears != null, vYears, 1)
 
     # Load the daily solar data
     data = dataParseCSV(fetch('data/solar.csv', null, true))
 
-    # Compute the monthly start and end dates and filter the data
+    # Compute the end date and the number of years to display
     maxDateData = dataAggregate(data, objectNew( \
         'measures', arrayNew( \
             objectNew('field', 'Date time', 'function', 'max') \
         ) \
     ))
     maxDate = objectGet(arrayGet(maxDateData, 0), 'Date time')
-    startDate = if(nYears == 0, null, datetimeNew(datetimeYear(maxDate) - nYears, 1, 1))
     endDate = datetimeNew(datetimeYear(maxDate), datetimeMonth(maxDate), 1)
-    tickCount = if(startDate == null, null, \
-        (12 * (datetimeYear(endDate) - datetimeYear(startDate)) - datetimeMonth(startDate)) + datetimeMonth(endDate) + 1)
-    data = if(startDate == null, data, dataFilter(data, '[Date time] >= startDate', objectNew('startDate', startDate)))
+    nYears = if(vYears != null, vYears, if(datetimeMonth(endDate) < 4, 2, 1))
+
+    # Filter the data, if necessary
+    if nYears > 0 then
+        minDate = datetimeNew(datetimeYear(maxDate) - nYears, 1, 1)
+        data = dataFilter(data, '[Date time] >= minDate', objectNew('minDate', minDate))
+    endif
+
+    # Compute the start date
+    minDateData = dataAggregate(data, objectNew( \
+        'measures', arrayNew( \
+            objectNew('field', 'Date time', 'function', 'min') \
+        ) \
+    ))
+    startDate = objectGet(arrayGet(minDateData, 0), 'Date time')
+
+    # Compute the tick count
+    tickCount = (12 * (datetimeYear(endDate) - datetimeYear(startDate)) - datetimeMonth(startDate)) + datetimeMonth(endDate) + 1
 
     # Add calculated fields
     dataCalculatedField(data, 'Date', 'date(year([Date time]), month([Date time]), 1)')
