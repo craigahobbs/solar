@@ -47,9 +47,10 @@ async function solarSolar()
     solarData = solarLoadData()
     monthly = objectGet(solarData, 'monthly')
     yearly = objectGet(solarData, 'yearly')
+    curYear = objectGet(solarData, 'curYear')
 
     # Draw the monthly solar energy line chart
-    currentYear = datetimeNew(datetimeYear(objectGet(solarData, 'endDate')), 1, 1)
+
     dataLineChart(monthly, objectNew( \
         'width', solarChartWidthWide, \
         'height', solarChartHeight, \
@@ -57,7 +58,7 @@ async function solarSolar()
         'y', arrayNew('Home (kWh)', 'Solar Energy (kWh)'), \
         'datetime', 'month', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
+            'count', arrayLength(monthly), \
             'skip', 2 \
         ), \
         'yTicks', objectNew( \
@@ -67,7 +68,7 @@ async function solarSolar()
             'skip', 1 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ) \
     ))
 
@@ -101,7 +102,6 @@ async function solarSelfPowered()
         'x', 'Month', \
         'y', arrayNew('Self-Powered%'), \
         'color', 'Year', \
-        'datetime', 'month', \
         'xTicks', objectNew('count', 12), \
         'yTicks', objectNew('count', 11, 'skip', 1, 'start', 0, 'end', 100) \
     ))
@@ -128,13 +128,13 @@ async function solarGrid()
     data = objectGet(solarData, 'data')
     monthly = objectGet(solarData, 'monthly')
     yearly = objectGet(solarData, 'yearly')
+    curYear = objectGet(solarData, 'curYear')
 
     # Calcuate the grid surplus
     dataCalculatedField(monthly, 'Grid Surplus (kWh)', '-[To Grid (kWh)] - [From Grid (kWh)]')
     dataCalculatedField(yearly, 'Grid Surplus (kWh)', '-[To Grid (kWh)] - [From Grid (kWh)]')
 
     # Draw the monthly grid surplus line chart
-    currentYear = datetimeNew(datetimeYear(objectGet(solarData, 'endDate')), 1, 1)
     dataLineChart(monthly, objectNew( \
         'title', 'Grid Surplus (Monthly)', \
         'width', solarChartWidth, \
@@ -143,7 +143,7 @@ async function solarGrid()
         'y', arrayNew('Grid Surplus (kWh)'), \
         'datetime', 'month', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
+            'count', arrayLength(monthly), \
             'skip', 2 \
         ), \
         'yTicks', objectNew( \
@@ -152,7 +152,7 @@ async function solarGrid()
             'count', 9 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ), \
         'yLines', arrayNew( \
             objectNew('value', 0, 'label', '') \
@@ -179,10 +179,9 @@ async function solarGrid()
         'height', solarChartHeight, \
         'x', 'Date time', \
         'y', arrayNew('From Grid (kWh)', 'To Grid (kWh)'), \
-        'datetime', 'month', \
+        'datetime', 'day', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
-            'skip', 2 \
+            'count', 6 \
         ), \
         'yTicks', objectNew( \
             'start', -80, \
@@ -190,7 +189,7 @@ async function solarGrid()
             'count', 6 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ) \
     ))
 
@@ -203,7 +202,7 @@ async function solarGrid()
         'y', arrayNew('From Grid (kWh)', 'To Grid (kWh)'), \
         'datetime', 'month', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
+            'count', arrayLength(monthly), \
             'skip', 2 \
         ), \
         'yTicks', objectNew( \
@@ -212,7 +211,7 @@ async function solarGrid()
             'count', 9 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ) \
     ))
 endfunction
@@ -223,9 +222,9 @@ async function solarPowerwall()
     solarData = solarLoadData('average')
     data = objectGet(solarData, 'data')
     monthly = objectGet(solarData, 'monthly')
+    curYear = objectGet(solarData, 'curYear')
 
     # Draw the monthly from-powerwall line chart
-    currentYear = datetimeNew(datetimeYear(objectGet(solarData, 'endDate')), 1, 1)
     dataLineChart(monthly, objectNew( \
         'title', 'Average From Powerwall (Monthly)', \
         'width', solarChartWidth, \
@@ -234,7 +233,7 @@ async function solarPowerwall()
         'y', arrayNew('From Powerwall (kWh)'), \
         'datetime', 'month', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
+            'count', arrayLength(monthly), \
             'skip', 2 \
         ), \
         'yTicks', objectNew( \
@@ -243,7 +242,7 @@ async function solarPowerwall()
             'count', 4 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ) \
     ))
 
@@ -254,10 +253,9 @@ async function solarPowerwall()
         'height', solarChartHeight, \
         'x', 'Date time', \
         'y', arrayNew('From Powerwall (kWh)'), \
-        'datetime', 'month', \
+        'datetime', 'day', \
         'xTicks', objectNew( \
-            'count', objectGet(solarData, 'tickCount'), \
-            'skip', 2 \
+            'count', 6 \
         ), \
         'yTicks', objectNew( \
             'start', 0, \
@@ -265,7 +263,7 @@ async function solarPowerwall()
             'count', 6 \
         ), \
         'xLines', arrayNew( \
-            objectNew('value', currentYear, 'label', datetimeISOFormat(currentYear, true)) \
+            objectNew('value', curYear, 'label', datetimeISOFormat(curYear, true)) \
         ) \
     ))
 endfunction
@@ -394,17 +392,6 @@ async function solarLoadData(aggFn)
         data = dataFilter(data, '[Date time] >= minDate', objectNew('minDate', minDate))
     endif
 
-    # Compute the start date
-    minDateData = dataAggregate(data, objectNew( \
-        'measures', arrayNew( \
-            objectNew('field', 'Date time', 'function', 'min') \
-        ) \
-    ))
-    startDate = objectGet(arrayGet(minDateData, 0), 'Date time')
-
-    # Compute the tick count
-    tickCount = (12 * (datetimeYear(endDate) - datetimeYear(startDate)) - datetimeMonth(startDate)) + datetimeMonth(endDate) + 1
-
     # Add calculated fields
     dataCalculatedField(data, 'Date', 'date(year([Date time]), month([Date time]), 1)')
     dataCalculatedField(data, 'Month', 'month([Date time])')
@@ -435,9 +422,7 @@ async function solarLoadData(aggFn)
         'data', data, \
         'monthly', monthly, \
         'yearly', yearly, \
-        'startDate', startDate, \
-        'endDate', endDate, \
-        'tickCount', tickCount \
+        'curYear', datetimeNew(datetimeYear(maxDate), 1, 1) \
     )
 endfunction
 
