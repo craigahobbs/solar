@@ -4,7 +4,23 @@
 
 .PHONY: help
 help:
-	@echo "usage: make [data|help]"
+	@echo 'usage: make [data|help]'
+
+
+.PHONY: clean
+clean:
+
+
+.PHONY: commit
+commit:
+
+
+.PHONY: gh-pages
+gh-pages:
+
+
+.PHONY: superclean
+superclean:
 
 
 .PHONY: data
