@@ -131,8 +131,8 @@ async function solarGrid()
     curYear = objectGet(solarData, 'curYear')
 
     # Calcuate the grid surplus
-    dataCalculatedField(monthly, 'Grid Surplus (kWh)', '-[To Grid (kWh)] - [From Grid (kWh)]')
-    dataCalculatedField(yearly, 'Grid Surplus (kWh)', '-[To Grid (kWh)] - [From Grid (kWh)]')
+    dataCalculatedField(monthly, 'Grid Surplus (kWh)', '[To Grid (kWh)] - [From Grid (kWh)]')
+    dataCalculatedField(yearly, 'Grid Surplus (kWh)', '[To Grid (kWh)] - [From Grid (kWh)]')
 
     # Draw the monthly grid surplus line chart
     dataLineChart(monthly, objectNew( \
