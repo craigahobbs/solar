@@ -206,7 +206,7 @@ async function solarGrid()
             'skip', 2 \
         ), \
         'yTicks', objectNew( \
-            'start', -1200, \
+            'start', 0, \
             'end', 1200, \
             'count', 9 \
         ), \
