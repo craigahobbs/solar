@@ -41,12 +41,6 @@ for csv_filename in sorted(os.listdir('data-raw')):
 		for row in reader:
 			all_rows.append(row)
 
-			# Fix old file's "To Grid" value
-			to_grid = float(row['To Grid (kWh)'])
-			if to_grid < 0:
-				row['To Grid (kWh)'] = -to_grid
-
-
 # Write the complete CSV
 with open('data/solar.csv', 'w', newline='') as csv_file:
 	writer = csv.DictWriter(csv_file, fieldnames=all_rows[0].keys())
