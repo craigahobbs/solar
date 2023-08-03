@@ -7,28 +7,28 @@ async function solarMain()
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
     curPage = null
-    foreach page, ixPage in arrayNew( \
+    for page, ixPage in arrayNew( \
         objectNew('fn', solarSolar, 'name', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
         objectNew('fn', solarSelfPowered, 'name', 'Self-Powered', 'title', 'Self-Powered by Month'), \
         objectNew('fn', solarGrid, 'name', 'Grid', 'title', 'Grid'), \
         objectNew('fn', solarPowerwall, 'name', 'Powerwall', 'title', 'Powerwall'), \
         objectNew('fn', solarMonthly, 'name', 'Monthly', 'title', 'Monthly'), \
         objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
-    ) do
+    ):
         pageName = objectGet(page, 'name')
-        if vPage == pageName || (vPage == null && ixPage == 0) then
+        if vPage == pageName || (vPage == null && ixPage == 0):
             curPage = page
             markdownPrint('| ' + markdownEscape(pageName))
-        else then
-            markdownPrint('| [' + markdownEscape(pageName) + "](#var.vPage='" + encodeURIComponent(pageName) + \
+        else:
+            markdownPrint('| [' + markdownEscape(pageName) + "](#var.vPage='" + urlEncodeComponent(pageName) + \
                 if(vYears != null, "'&var.vYears=" + vYears, "'") + ')')
         endif
-    endforeach
+    endfor
 
     # Set the title
     curPageTitle = objectGet(curPage, 'title')
     markdownPrint('', '# ' + curPageTitle, '')
-    setDocumentTitle(curPageTitle)
+    documentSetTitle(curPageTitle)
 
     # Render the page
     curPageFn = objectGet(curPage, 'fn')
@@ -338,8 +338,8 @@ async function solarMonthlyTable()
     monthly = objectGet(solarData, 'monthly')
 
     # Join the hvac and auto data tables
-    monthly = dataJoin(monthly, dataParseCSV(fetch('data/auto.csv', null, true)), 'Date')
-    monthly = dataJoin(monthly, dataParseCSV(fetch('data/hvac.csv', null, true)), 'Date')
+    monthly = dataJoin(monthly, dataParseCSV(httpFetch('data/auto.csv', null, true)), 'Date')
+    monthly = dataJoin(monthly, dataParseCSV(httpFetch('data/hvac.csv', null, true)), 'Date')
 
     # Add calculated fields
     dataCalculatedField(monthly, 'HVAC (kWh)', 'if([HVAC Total (kWh)] == null, "", [HVAC Total (kWh)])')
@@ -374,7 +374,7 @@ async function solarLoadData(aggFn)
     aggFn = if(aggFn != null, aggFn, 'sum')
 
     # Load the daily solar data
-    data = dataParseCSV(fetch('data/solar.csv', null, true))
+    data = dataParseCSV(httpFetch('data/solar.csv', null, true))
 
     # Compute the end date and the number of years to display
     maxDateData = dataAggregate(data, objectNew( \
@@ -387,7 +387,7 @@ async function solarLoadData(aggFn)
     nYears = if(vYears != null, vYears, if(datetimeMonth(endDate) < 4, 2, 1))
 
     # Filter the data, if necessary
-    if nYears > 0 then
+    if nYears > 0:
         minDate = datetimeNew(datetimeYear(maxDate) - nYears, 1, 1)
         data = dataFilter(data, '[Date time] >= minDate', objectNew('minDate', minDate))
     endif
