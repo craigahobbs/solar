@@ -338,8 +338,8 @@ async function solarMonthlyTable()
     monthly = objectGet(solarData, 'monthly')
 
     # Join the hvac and auto data tables
-    monthly = dataJoin(monthly, dataParseCSV(httpFetch('data/auto.csv', null, true)), 'Date')
-    monthly = dataJoin(monthly, dataParseCSV(httpFetch('data/hvac.csv', null, true)), 'Date')
+    monthly = dataJoin(monthly, dataParseCSV(systemFetch('data/auto.csv', null, true)), 'Date')
+    monthly = dataJoin(monthly, dataParseCSV(systemFetch('data/hvac.csv', null, true)), 'Date')
 
     # Add calculated fields
     dataCalculatedField(monthly, 'HVAC (kWh)', 'if([HVAC Total (kWh)] == null, "", [HVAC Total (kWh)])')
@@ -374,7 +374,7 @@ async function solarLoadData(aggFn)
     aggFn = if(aggFn != null, aggFn, 'sum')
 
     # Load the daily solar data
-    data = dataParseCSV(httpFetch('data/solar.csv', null, true))
+    data = dataParseCSV(systemFetch('data/solar.csv', null, true))
 
     # Compute the end date and the number of years to display
     maxDateData = dataAggregate(data, objectNew( \
