@@ -3,7 +3,7 @@
 # https://github.com/craigahobbs/solar/blob/main/LICENSE
 
 
-async function solarMain()
+async function solarMain():
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
     curPage = null
@@ -42,7 +42,7 @@ solarChartWidth = 900
 solarChartHeight = 350
 
 
-async function solarSolar()
+async function solarSolar():
     # Load the solar data
     solarData = solarLoadData()
     monthly = objectGet(solarData, 'monthly')
@@ -86,7 +86,7 @@ async function solarSolar()
 endfunction
 
 
-async function solarSelfPowered()
+async function solarSelfPowered():
     # Load the solar data
     solarData = solarLoadData('average')
     monthly = objectGet(solarData, 'monthly')
@@ -122,7 +122,7 @@ async function solarSelfPowered()
 endfunction
 
 
-async function solarGrid()
+async function solarGrid():
     # Load the solar data
     solarData = solarLoadData()
     data = objectGet(solarData, 'data')
@@ -217,7 +217,7 @@ async function solarGrid()
 endfunction
 
 
-async function solarPowerwall()
+async function solarPowerwall():
     # Load the solar data
     solarData = solarLoadData('average')
     data = objectGet(solarData, 'data')
@@ -269,7 +269,7 @@ async function solarPowerwall()
 endfunction
 
 
-async function solarMonthly()
+async function solarMonthly():
     # Load the solar data
     solarData = solarLoadData()
     monthly = objectGet(solarData, 'monthly')
@@ -332,7 +332,7 @@ async function solarMonthly()
 endfunction
 
 
-async function solarMonthlyTable()
+async function solarMonthlyTable():
     # Load the solar data
     solarData = solarLoadData()
     monthly = objectGet(solarData, 'monthly')
@@ -370,7 +370,7 @@ async function solarMonthlyTable()
 endfunction
 
 
-async function solarLoadData(aggFn)
+async function solarLoadData(aggFn):
     aggFn = if(aggFn != null, aggFn, 'sum')
 
     # Load the daily solar data
