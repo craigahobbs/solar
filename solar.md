@@ -2,28 +2,37 @@
 # Licensed under the MIT License
 # https://github.com/craigahobbs/solar/blob/main/LICENSE
 
+include <args.mds>
+
 
 async function solarMain():
+    # Parse arguments
+    args = argsParse(solarArguments)
+    curPageName = objectGet(args, 'page')
+
     # Render the menu
     markdownPrint('[Home](#url=README.md&var=)')
-    curPage = null
-    for page, ixPage in arrayNew( \
+    pages = arrayNew( \
         objectNew('fn', solarSolar, 'name', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
         objectNew('fn', solarSelfPowered, 'name', 'Self-Powered', 'title', 'Self-Powered by Month'), \
         objectNew('fn', solarGrid, 'name', 'Grid', 'title', 'Grid'), \
         objectNew('fn', solarPowerwall, 'name', 'Powerwall', 'title', 'Powerwall'), \
         objectNew('fn', solarMonthly, 'name', 'Monthly', 'title', 'Monthly'), \
         objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
-    ):
+    )
+    curPage = null
+    for page, ixPage in pages:
         pageName = objectGet(page, 'name')
-        if vPage == pageName || (vPage == null && ixPage == 0):
+        if pageName == curPageName:
             curPage = page
             markdownPrint('| ' + markdownEscape(pageName))
         else:
-            markdownPrint('| [' + markdownEscape(pageName) + "](#var.vPage='" + urlEncodeComponent(pageName) + \
-                if(vYears != null, "'&var.vYears=" + vYears, "'") + ')')
+            markdownPrint('| ' + argsLink(solarArguments, pageName, objectNew('page', pageName)))
         endif
     endfor
+    if curPage == null:
+        curPage = arrayGet(pages, 0)
+    endif
 
     # Set the title
     curPageTitle = objectGet(curPage, 'title')
@@ -32,8 +41,15 @@ async function solarMain():
 
     # Render the page
     curPageFn = objectGet(curPage, 'fn')
-    curPageFn()
+    curPageFn(args)
 endfunction
+
+
+# The Solar application arguments
+solarArguments = argsValidate(arrayNew( \
+    objectNew('name', 'page', 'default', 'Solar'), \
+    objectNew('name', 'years', 'type', 'int') \
+))
 
 
 # Chart size constants
@@ -42,9 +58,9 @@ solarChartWidth = 900
 solarChartHeight = 350
 
 
-async function solarSolar():
+async function solarSolar(args):
     # Load the solar data
-    solarData = solarLoadData()
+    solarData = solarLoadData(args)
     monthly = objectGet(solarData, 'monthly')
     yearly = objectGet(solarData, 'yearly')
     curYear = objectGet(solarData, 'curYear')
@@ -86,9 +102,9 @@ async function solarSolar():
 endfunction
 
 
-async function solarSelfPowered():
+async function solarSelfPowered(args):
     # Load the solar data
-    solarData = solarLoadData('average')
+    solarData = solarLoadData(args, 'average')
     monthly = objectGet(solarData, 'monthly')
 
     # Compute the monthly self-powered percentage
@@ -122,9 +138,9 @@ async function solarSelfPowered():
 endfunction
 
 
-async function solarGrid():
+async function solarGrid(args):
     # Load the solar data
-    solarData = solarLoadData()
+    solarData = solarLoadData(args)
     data = objectGet(solarData, 'data')
     monthly = objectGet(solarData, 'monthly')
     yearly = objectGet(solarData, 'yearly')
@@ -217,9 +233,9 @@ async function solarGrid():
 endfunction
 
 
-async function solarPowerwall():
+async function solarPowerwall(args):
     # Load the solar data
-    solarData = solarLoadData('average')
+    solarData = solarLoadData(args, 'average')
     data = objectGet(solarData, 'data')
     monthly = objectGet(solarData, 'monthly')
     curYear = objectGet(solarData, 'curYear')
@@ -269,9 +285,9 @@ async function solarPowerwall():
 endfunction
 
 
-async function solarMonthly():
+async function solarMonthly(args):
     # Load the solar data
-    solarData = solarLoadData()
+    solarData = solarLoadData(args)
     monthly = objectGet(solarData, 'monthly')
 
     # Draw the monthly solar energy line chart
@@ -332,9 +348,9 @@ async function solarMonthly():
 endfunction
 
 
-async function solarMonthlyTable():
+async function solarMonthlyTable(args):
     # Load the solar data
-    solarData = solarLoadData()
+    solarData = solarLoadData(args)
     monthly = objectGet(solarData, 'monthly')
 
     # Join the hvac and auto data tables
@@ -370,7 +386,7 @@ async function solarMonthlyTable():
 endfunction
 
 
-async function solarLoadData(aggFn):
+async function solarLoadData(args, aggFn):
     aggFn = if(aggFn != null, aggFn, 'sum')
 
     # Load the daily solar data
@@ -384,7 +400,7 @@ async function solarLoadData(aggFn):
     ))
     maxDate = objectGet(arrayGet(maxDateData, 0), 'Date time')
     endDate = datetimeNew(datetimeYear(maxDate), datetimeMonth(maxDate), 1)
-    nYears = if(vYears != null, vYears, if(datetimeMonth(endDate) < 4, 2, 1))
+    nYears = objectGet(args, 'years', if(datetimeMonth(endDate) < 4, 2, 1))
 
     # Filter the data, if necessary
     if nYears > 0:
