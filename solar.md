@@ -3,45 +3,43 @@
 # https://github.com/craigahobbs/solar/blob/main/LICENSE
 
 include <args.mds>
+include <pager.mds>
 
 
+# The Solar application main entry point
 async function solarMain():
-    # Parse arguments
-    args = argsParse(solarArguments)
-    curPageName = objectGet(args, 'page')
-
-    # Render the menu
-    markdownPrint('[Home](#url=README.md&var=)')
-    pages = arrayNew( \
-        objectNew('fn', solarSolar, 'name', 'Solar', 'title', 'Solar Energy Generated and Power Used'), \
-        objectNew('fn', solarSelfPowered, 'name', 'Self-Powered', 'title', 'Self-Powered by Month'), \
-        objectNew('fn', solarGrid, 'name', 'Grid', 'title', 'Grid'), \
-        objectNew('fn', solarPowerwall, 'name', 'Powerwall', 'title', 'Powerwall'), \
-        objectNew('fn', solarMonthly, 'name', 'Monthly', 'title', 'Monthly'), \
-        objectNew('fn', solarMonthlyTable, 'name', 'Table', 'title', 'Monthly Table') \
+    pagerModel = objectNew( \
+        'pages', arrayNew( \
+            objectNew('name', 'Home', 'type', objectNew('link', objectNew( \
+                'url', '#url=README.md&var=' \
+            ))), \
+            objectNew('name', 'Solar', 'type', objectNew('function', objectNew( \
+                'function', solarSolar, \
+                'title', 'Solar Energy Generated and Power Used' \
+            ))), \
+            objectNew('name', 'Self-Powered', 'type', objectNew('function', objectNew( \
+                'function', solarSelfPowered, \
+                'title', 'Self-Powered by Month' \
+            ))), \
+            objectNew('name', 'Grid', 'type', objectNew('function', objectNew( \
+                'function', solarGrid, \
+                'title', 'Grid' \
+            ))), \
+            objectNew('name', 'Powerwall', 'type', objectNew('function', objectNew( \
+                'function', solarPowerwall, \
+                'title', 'Powerwall' \
+            ))), \
+            objectNew('name', 'Monthly', 'type', objectNew('function', objectNew( \
+                'function', solarMonthly, \
+                'title', 'Monthly' \
+            ))), \
+            objectNew('name', 'Table', 'type', objectNew('function', objectNew( \
+                'function', solarMonthlyTable, \
+                'title', 'Monthly Table' \
+            ))) \
+        ) \
     )
-    curPage = null
-    for page, ixPage in pages:
-        pageName = objectGet(page, 'name')
-        if pageName == curPageName:
-            curPage = page
-            markdownPrint('| ' + markdownEscape(pageName))
-        else:
-            markdownPrint('| ' + argsLink(solarArguments, pageName, objectNew('page', pageName)))
-        endif
-    endfor
-    if curPage == null:
-        curPage = arrayGet(pages, 0)
-    endif
-
-    # Set the title
-    curPageTitle = objectGet(curPage, 'title')
-    markdownPrint('', '# ' + curPageTitle, '')
-    documentSetTitle(curPageTitle)
-
-    # Render the page
-    curPageFn = objectGet(curPage, 'fn')
-    curPageFn(args)
+    pagerMain(pagerModel, solarArguments)
 endfunction
 
 
