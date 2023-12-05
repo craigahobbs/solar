@@ -10,8 +10,8 @@ include <pager.mds>
 async function solarMain():
     pagerModel = objectNew( \
         'pages', arrayNew( \
-            objectNew('name', 'Home', 'type', objectNew('link', objectNew( \
-                'url', '#url=README.md&var=' \
+            objectNew('name', 'Home', 'type', objectNew('markdown', objectNew( \
+                'url', 'README.md' \
             ))), \
             objectNew('name', 'Solar', 'type', objectNew('function', objectNew( \
                 'function', solarSolar, \
@@ -39,7 +39,7 @@ async function solarMain():
             ))) \
         ) \
     )
-    pagerMain(pagerModel, objectNew('arguments', solarArguments, 'hideNav', true))
+    pagerMain(pagerModel, objectNew('arguments', solarArguments, 'start', 'Solar', 'hideNav', true))
 endfunction
 
 
