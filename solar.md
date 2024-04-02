@@ -356,12 +356,12 @@ async function solarMonthlyTable(args):
     monthly = dataJoin(monthly, dataParseCSV(systemFetch('data/hvac.csv')), 'Date')
 
     # Add calculated fields
-    dataCalculatedField(monthly, 'HVAC (kWh)', 'if([HVAC Total (kWh)] == null, "", [HVAC Total (kWh)])')
-    dataCalculatedField(monthly, 'Auto (kWh)', 'if([Auto Home (kWh)] == null, "", [Auto Home (kWh)])')
-    dataCalculatedField(monthly, 'Other (kWh)', 'if([HVAC (kWh)] == "" && [Auto (kWh)] == "", "", [Home (kWh)] - [HVAC (kWh)] - [Auto (kWh)])')
-    dataCalculatedField(monthly, 'HVAC %', 'if([HVAC (kWh)] == "", "", fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + "%")')
-    dataCalculatedField(monthly, 'Auto %', 'if([Auto (kWh)] == "", "", fixed(100 * [Auto (kWh)] / [Home (kWh)], 1) + "%")')
-    dataCalculatedField(monthly, 'Other %', 'if([Other (kWh)] == "", "", fixed(100 * [Other (kWh)] / [Home (kWh)], 1) + "%")')
+    dataCalculatedField(monthly, 'HVAC (kWh)', 'if([HVAC Total (kWh)] == null, 0, [HVAC Total (kWh)])')
+    dataCalculatedField(monthly, 'Auto (kWh)', 'if([Auto Home (kWh)] == null, 0, [Auto Home (kWh)])')
+    dataCalculatedField(monthly, 'Other (kWh)', '[Home (kWh)] - [HVAC (kWh)] - [Auto (kWh)]')
+    dataCalculatedField(monthly, 'HVAC %', 'fixed(100 * [HVAC Total (kWh)] / [Home (kWh)], 1) + "%"')
+    dataCalculatedField(monthly, 'Auto %', 'fixed(100 * [Auto (kWh)] / [Home (kWh)], 1) + "%"')
+    dataCalculatedField(monthly, 'Other %', 'fixed(100 * [Other (kWh)] / [Home (kWh)], 1) + "%"')
 
     # Render the monthly data table
     dataSort(monthly, arrayNew(arrayNew('Year', true), arrayNew('Month', true)))
