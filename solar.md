@@ -17,6 +17,10 @@ async function solarMain():
                 'function', solarSolar, \
                 'title', 'Solar Energy Generated and Power Used' \
             ))), \
+            objectNew('name', 'Surplus', 'type', objectNew('function', objectNew( \
+                'function', solarSurplus, \
+                'title', 'Grid Surplus' \
+            ))), \
             objectNew('name', 'Self-Powered', 'type', objectNew('function', objectNew( \
                 'function', solarSelfPowered, \
                 'title', 'Self-Powered by Month' \
@@ -64,7 +68,6 @@ async function solarSolar(args):
     curYear = objectGet(solarData, 'curYear')
 
     # Draw the monthly solar energy line chart
-
     dataLineChart(monthly, objectNew( \
         'width', solarChartWidthWide, \
         'height', solarChartHeight, \
@@ -96,6 +99,59 @@ async function solarSolar(args):
             'Home (kWh)' \
         ), \
         'precision', 1 \
+    ))
+endfunction
+
+
+async function solarSurplus(args):
+    # Load the solar data
+    solarData = solarLoadData(args)
+    data = objectGet(solarData, 'data')
+
+    # Compute the grid surplus
+    surplusData = arrayNew()
+    gridDay = 0
+    gridYear = null
+    gridSurplus = 0
+    resetMonth = 3
+    for row in data:
+        date = objectGet(row, 'Date time')
+        if datetimeMonth(date) == resetMonth && datetimeDay(date) == 1:
+            gridDay = 0
+            gridYear = datetimeYear(date)
+            gridSurplus = 0
+        elif !gridYear:
+            continue
+        endif
+        gridDay = gridDay + 1
+        gridSurplus = gridSurplus + objectGet(row, 'Solar Offset (kWh)')
+        arrayPush(surplusData, objectNew( \
+            'Day', gridDay, \
+            'Year', gridYear, \
+            'Grid Surplus (kWh)', gridSurplus \
+        ))
+    endfor
+
+    # Report the current surplus
+    markdownPrint('**Current Grid Surplus:** ' + numberToFixed(gridSurplus, 0) + ' kWh')
+
+    # Draw the grid surplus line chart
+    dataLineChart(surplusData, objectNew( \
+        'title', 'Grid Surplus', \
+        'width', solarChartWidthWide, \
+        'height', solarChartHeight, \
+        'x', 'Day', \
+        'y', arrayNew('Grid Surplus (kWh)'), \
+        'color', 'Year', \
+        'datetime', 'day', \
+        'precision', 0, \
+        'xTicks', objectNew( \
+            'count', 5 \
+        ), \
+        'yTicks', objectNew( \
+            'start', 0, \
+            'count', 3 \
+        ) \
     ))
 endfunction
 
