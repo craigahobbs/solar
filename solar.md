@@ -113,11 +113,15 @@ async function solarSurplus(args):
     gridDay = 0
     gridYear = null
     gridSurplus = 0
+    solarEnergy = 0
+    homeEnergy = 0
     resetMonth = 3
     for row in data:
         date = objectGet(row, 'Date time')
         if datetimeMonth(date) == resetMonth && datetimeDay(date) == 1:
             gridDay = 0
+            solarEnergy = 0
+            homeEnergy = 0
             gridYear = datetimeYear(date)
             gridSurplus = 0
         elif !gridYear:
@@ -125,10 +129,14 @@ async function solarSurplus(args):
         endif
         gridDay = gridDay + 1
         gridSurplus = gridSurplus + objectGet(row, 'Solar Offset (kWh)')
+        solarEnergy = solarEnergy + objectGet(row, 'Solar Energy (kWh)')
+        homeEnergy = homeEnergy + objectGet(row, 'Home (kWh)')
         arrayPush(surplusData, objectNew( \
             'Day', gridDay, \
             'Year', gridYear, \
-            'Grid Surplus (kWh)', gridSurplus \
+            'Grid Surplus (kWh)', gridSurplus, \
+            'Solar Energy (kWh)', solarEnergy, \
+            'Home (kWh)', homeEnergy \
         ))
     endfor
 
@@ -142,6 +150,44 @@ async function solarSurplus(args):
         'height', solarChartHeight, \
         'x', 'Day', \
         'y', arrayNew('Grid Surplus (kWh)'), \
+        'color', 'Year', \
+        'datetime', 'day', \
+        'precision', 0, \
+        'xTicks', objectNew( \
+            'count', 5 \
+        ), \
+        'yTicks', objectNew( \
+            'start', 0, \
+            'count', 3 \
+        ) \
+    ))
+
+    # Draw the solar energy line chart
+    dataLineChart(surplusData, objectNew( \
+        'title', 'Solar Energy', \
+        'width', solarChartWidthWide, \
+        'height', solarChartHeight, \
+        'x', 'Day', \
+        'y', arrayNew('Solar Energy (kWh)'), \
+        'color', 'Year', \
+        'datetime', 'day', \
+        'precision', 0, \
+        'xTicks', objectNew( \
+            'count', 5 \
+        ), \
+        'yTicks', objectNew( \
+            'start', 0, \
+            'count', 3 \
+        ) \
+    ))
+
+    # Draw the home energy line chart
+    dataLineChart(surplusData, objectNew( \
+        'title', 'Home Energy', \
+        'width', solarChartWidthWide, \
+        'height', solarChartHeight, \
+        'x', 'Day', \
+        'y', arrayNew('Home (kWh)'), \
         'color', 'Year', \
         'datetime', 'day', \
         'precision', 0, \
