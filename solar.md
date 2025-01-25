@@ -50,7 +50,7 @@ endfunction
 # The Solar application arguments
 solarArguments = argsValidate(arrayNew( \
     objectNew('name', 'page', 'default', 'Solar'), \
-    objectNew('name', 'years', 'type', 'int') \
+    objectNew('name', 'years', 'type', 'int', 'default', 4) \
 ))
 
 
@@ -500,7 +500,7 @@ async function solarLoadData(args, aggFn):
     ))
     maxDate = objectGet(arrayGet(maxDateData, 0), 'Date time')
     endDate = datetimeNew(datetimeYear(maxDate), datetimeMonth(maxDate), 1)
-    nYears = objectGet(args, 'years', if(datetimeMonth(endDate) < 4, 2, 1))
+    nYears = objectGet(args, 'years')
 
     # Filter the data, if necessary
     if nYears > 0:
