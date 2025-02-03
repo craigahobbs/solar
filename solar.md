@@ -76,7 +76,7 @@ async function solarSolar(args):
         'datetime', 'month', \
         'xTicks', objectNew( \
             'count', arrayLength(monthly), \
-            'skip', 2 \
+            'skip', 4 \
         ), \
         'yTicks', objectNew( \
             'start', 0, \
@@ -260,7 +260,7 @@ async function solarGrid(args):
         'datetime', 'month', \
         'xTicks', objectNew( \
             'count', arrayLength(monthly), \
-            'skip', 2 \
+            'skip', 4 \
         ), \
         'yTicks', objectNew( \
             'start', -1200, \
@@ -319,7 +319,7 @@ async function solarGrid(args):
         'datetime', 'month', \
         'xTicks', objectNew( \
             'count', arrayLength(monthly), \
-            'skip', 2 \
+            'skip', 4 \
         ), \
         'yTicks', objectNew( \
             'start', 0, \
@@ -350,7 +350,7 @@ async function solarPowerwall(args):
         'datetime', 'month', \
         'xTicks', objectNew( \
             'count', arrayLength(monthly), \
-            'skip', 2 \
+            'skip', 4 \
         ), \
         'yTicks', objectNew( \
             'start', 0, \
