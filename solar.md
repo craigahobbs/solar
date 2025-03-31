@@ -2,8 +2,8 @@
 # Licensed under the MIT License
 # https://github.com/craigahobbs/solar/blob/main/LICENSE
 
-include <args.mds>
-include <pager.mds>
+include <args.bare>
+include <pager.bare>
 
 
 # The Solar application main entry point
