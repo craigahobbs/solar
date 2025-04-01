@@ -42,8 +42,9 @@ for csv_filename in sorted(os.listdir('data-raw')):
 			all_rows.append(row)
 
 # Write the complete CSV
+fieldnames = fieldnames=all_rows[0].keys()
 with open('data/solar.csv', 'w', newline='') as csv_file:
-	writer = csv.DictWriter(csv_file, fieldnames=all_rows[0].keys())
+	writer = csv.DictWriter(csv_file, fieldnames=fieldnames, extrasaction='ignore')
 	writer.writeheader()
 	for row in all_rows:
 		writer.writerow(row)
