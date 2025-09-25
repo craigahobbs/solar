@@ -43,7 +43,7 @@ async function solarMain():
             ))) \
         ) \
     )
-    pagerMain(pagerModel, objectNew('arguments', solarArguments, 'start', 'Solar', 'hideNav', true))
+    pagerMain(pagerModel, objectNew('arguments', solarArguments, 'start', 'Solar', 'hideNav', true, 'keyboard', true))
 endfunction
 
 
